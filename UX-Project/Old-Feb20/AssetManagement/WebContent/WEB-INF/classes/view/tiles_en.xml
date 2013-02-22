@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions> 
+  <definition name="tiles_general_layout" template="/WEB-INF/jsp/general/tiles_template.jsp">
+      <put-attribute name="header" value="/WEB-INF/jsp/general/header_home.jsp"/>
+      <put-attribute name="menu" value="/WEB-INF/jsp/general/menu_home.jsp"/>
+      <put-attribute name="search_home" value="/WEB-INF/jsp/general/advancedSearch_home.jsp"/>
+      <put-attribute name="innerRightContainer" value="/WEB-INF/jsp/general/right_menu_tile.jsp"/>         
+      <put-attribute name="innerLeftContainer" value=""/>           
+      <put-attribute name="footer" value="/WEB-INF/jsp/general/footer_home.jsp"/>
+   </definition> 
+   
+	<definition name="tiles_home_layout" extends="tiles_general_layout">
+      <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/homecontent.jsp"/>           
+   </definition> 
+   
+    <definition name="tiles_home_territory_layout" extends="tiles_home_layout">
+   		<put-attribute name="innerRightContainer_home" value="/WEB-INF/jsp/quickLinks_territory_home.jsp"/> 
+   </definition>
+   
+   <!-- definition name="tiles_estimate_layout" template="/WEB-INF/jsp/general/tiles_estimate_template.jsp">
+      <put-attribute name="header" value="/WEB-INF/jsp/general/header_tile.jsp"/>
+      <put-attribute name="menu" value="/WEB-INF/jsp/general/tabbed_menu_tile.jsp"/>       
+      <put-attribute name="innerLeftContainer" value=""/>           
+      <put-attribute name="footer" value="/WEB-INF/jsp/general/footer_tile.jsp"/>
+   </definition-->  
+   
+   <definition name="taskqueue" template="/WEB-INF/jsp/general/tiles_task_queue_template.jsp">
+   	  <put-attribute name="header_home" value="/WEB-INF/jsp/general/header_home.jsp"/>
+      <put-attribute name="menu_home" value="/WEB-INF/jsp/general/menu_home.jsp"/>
+      <put-attribute name="innerRightContainer_home" value="/WEB-INF/jsp/taskqueue.jsp"/>
+       <put-attribute name="footer_home" value=""/>
+   </definition>
+   
+  <definition name="overlay_layout" template="/WEB-INF/jsp/general/overlay_template.jsp"> 
+      <put-attribute name="innerContainer" value=""/>     
+   </definition> 
+  
+  	<definition name="createservicetemplate" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/create_service_template.jsp"/>           
+   </definition>
+   
+   <definition name="view_title" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/view_title_details.jsp"/>
+   </definition>
+   
+    <definition name="add_title" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_form.jsp"/> 
+   </definition>
+   
+   <definition name="edit_title" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_form.jsp"/>
+   </definition>
+   
+   <definition name="title_search_results" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_results.jsp"/>   		
+   </definition>
+   
+   <definition name="film_estimate_search_results" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/film_estimate_title_results.jsp"/>   		
+   </definition>
+   
+   <definition name="estimate_home" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/estimate_home.jsp"/>   		
+   </definition>
+   
+   <definition name="createdestimatehome" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/recent_estimates.jsp"/>   		
+   </definition>
+   
+   <definition name="estimatesbyterritory" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/estimates_by_territory.jsp"/>   		
+   </definition>
+   
+   <definition name="estimate_form" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/film_estimate.jsp"/>   		
+   </definition>
+   
+   <definition name="film_service_pricing_overlay" extends="overlay_layout">
+   		<put-attribute name="innerContainer" value="/WEB-INF/jsp/overlay/film_service_pricing.jsp"/>   		
+   </definition>
+   
+   <definition name="film_service_pricing_task_view_overlay" extends="overlay_layout">
+   		<put-attribute name="innerContainer" value="/WEB-INF/jsp/overlayTaskQueue/film_service_pricing_task_queue.jsp"/>   		
+   </definition>
+   
+   <definition name="initiateterritoryworkflow" extends="tiles_general_layout">
+   	<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/initiate_territory_workflow.jsp"/>           
+   </definition>
+   
+</tiles-definitions>

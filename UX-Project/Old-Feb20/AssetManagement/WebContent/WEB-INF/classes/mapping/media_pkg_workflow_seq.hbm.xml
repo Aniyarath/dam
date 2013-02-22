@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.workflowseq.dto.MediaPkgWorkflowSEQ" table="media_pkg_workflow_seq" lazy="false">
+        <id name="media_pkg_workflow_seq_id" type="int">
+            <column name="media_pkg_workflow_seq_id" />
+            <generator class="increment"></generator>
+        </id>
+        
+        <property name="media_package_id" type="int">
+            <column name="media_package_id" />
+        </property>
+        
+        <property name="pkg_workflow_sequence" type="java.lang.String">
+            <column name="pkg_workflow_sequence" />
+        </property>
+        
+        
+         <property name="vendor_ID" type="int">
+            <column name="vendor_ID" />
+        </property>
+        
+    </class>
+        
+        
+</hibernate-mapping>

@@ -1,0 +1,767 @@
+@charset "utf-8";
+
+/* CSS Document */
+#apDiv1 {
+	margin: 0px 0px 0px 0px;
+	background-color: #ffffff;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	position: absolute;
+	width: 98%;
+	height: 100%;
+	z-index: 1;
+}
+
+#leftpart {
+	margin: 0px 0px 0px 0px;
+	background-color: #EFEFEF;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	position: absolute;
+	width: 75%;
+	height: 100%;
+	float: left;
+	z-index: 1;
+}
+
+#rightpart {
+	float: right;
+	width: 23%;
+	height: 100%;
+}
+
+#newtitle {
+	background-color: #EFEFEF;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 22%;
+	left: 77%;
+	position: absolute;
+	width: 20%;
+	z-index: 2;
+}
+
+#search {
+	margin: 0px 0px 0px 0px;
+	background-color: #EFEFEF;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 22%;
+	left: 77%;
+	position: absolute;
+	width: 20%;
+	z-index: 2;
+	top: 26%;
+}
+
+#mytask {
+	margin: 0px 0px 0px 0px;
+	background-color: #EFEFEF;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 22%;
+	left: 77%;
+	position: absolute;
+	width: 20%;
+	z-index: 2;
+	top: 52%;
+}
+
+#quicklinks {
+	margin: 0px 0px 0px 0px;
+	background-color: #EFEFEF;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #cccccc;
+	height: 22%;
+	left: 77%;
+	position: absolute;
+	width: 20%;
+	z-index: 2;
+	top: 78%;
+}
+
+.table {
+	padding: 15px;
+}
+
+.bodyheading {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 16px;
+	font-weight: bold;
+	color: #FFBC00;
+	padding: 10px;
+	text-align: left;
+	vertical-align: middle;
+}
+
+.content {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 13px;
+	color: #333333;
+	padding: 3px;
+	text-align: right;
+	vertical-align: middle;
+}
+
+.colan {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 13px;
+	color: #333333;
+	padding: 1px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.button {
+	background-image: url(button.jpg);
+	background-repeat: no-repeat;
+	height: 83px;
+	height: 23px;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 13px;
+	text-transform: uppercase;
+	text-align: center;
+	vertical-align: middle;
+	color: #FFF;
+}
+
+.InnerMHformContainer {
+	background-color: #f3f3f3;
+	border: 1px solid #969495;
+}
+
+.InnerMHformContainerSections {
+	border: 1px solid #969495;
+	margin-top: 15px;
+}
+
+.button {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 14px;
+	color: #FFF;
+	text-decoration: none;
+	text-align: center;
+}
+
+.divider {
+	font-family: Arial, Helvetica, sans-serif !important;
+	padding-left: 100px;
+}
+
+.headingbutton2 {
+	font-family: Arial, Helvetica, sans-serif !important;
+	background-color: #999;
+	font-size: 12px;
+	text-align: center;
+	padding: 5px;
+	height: 15px;
+}
+
+.table1 {
+	font-family: Arial, Helvetica, sans-serif !important;
+	background-color: #E6E6E6;
+	font-size: 12px;
+}
+
+.releaseDateCalendar {
+	font-size: 62.5%;
+	font-family: Arial, Helvetica, sans-serif !important;
+	height: 16px;
+	font-size: 11px;
+}
+
+.floatRight {
+	float: right;
+	margin-top: -12px;
+}
+
+/****************************************************/
+.jquery-dialog {
+	overflow-y: auto;
+	/*height: 612px;*/
+}
+
+.leftInnerDivStyle {
+	background-color: #f8f8f8;
+	min-height: 300px;
+}
+
+.tabsContainer { /*margin: 10px 5px 10px 5px;*/
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-color: #e7e7e7;
+	box-shadow: 3px 3px 3px #e7e7e7;
+	max-width: 735px;
+}
+
+.rightInnerDivStyle {
+	min-height: 140px;
+	/*background-color:#f8f8f8;
+	margin: 10px 0px 10px 0px;
+	border-style:solid;
+	border-width:1px;
+	border-style:solid;
+	border-color:#cccccc;
+	box-shadow: 3px 3px 3px #e7e7e7;	
+	padding: 5px; */
+}
+
+.rightInnerDivStyle .flexigrid {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 12px;
+}
+
+.resultsLeftInnerDiv .flexigrid {
+	font-family: Arial, Helvetica, sans-serif !important !important;
+	font-size: 12px;
+}
+
+.flexigrid .hDiv {
+	margin: 3px 3px 0 3px;
+	font-weight: bold;
+}
+
+.flexigrid .bDiv {
+	margin: 0 3px 3px 3px
+}
+
+.rightInnerDivHeader {
+	color: #FFBC00;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.titleFormColonStyle {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.titleFormLabelStyle {
+	text-align: right;
+	vertical-align: middle;
+}
+
+.titleFormFieldStyle {
+	text-align: left;
+	vertical-align: middle;
+}
+
+#tabs_container .ui-widget-content {
+	border: none;
+}
+
+#tabs_container .ui-widget {
+	font-size: 12px;
+}
+
+#filmEstimateTabs .ui-icon {
+	height: auto;
+}
+
+.floatLeft {
+	float: left;
+}
+
+.floatRight {
+	float: right;
+}
+
+.clearBoth {
+	clear: both;
+}
+
+.blockHeading {
+	padding-left: 10px;
+	font-weight: bold;
+}
+
+.subItemDetails {
+	background: none repeat scroll 0 0 #EDEDED;
+	margin: 10px;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 12px;
+}
+
+.nonFunctionalTitleItems {
+	/*background: url("images/ui-bg_glass_75_e6e6e6_1x400.png") repeat-x scroll 50% 50% #E6E6E6;
+    border: 1px solid #D3D3D3;
+    color: #555555;
+    font-weight: normal;*/
+	display: none;
+}
+
+.leftInnerDivStyle #estimateCostCategory img {
+	padding-left: 40px;
+}
+
+.clickToExpand {
+	background: url("resources/images/dbpage_12.png") repeat-x;
+	cursor: pointer;
+	padding-left: 10px;
+}
+
+.clickToExpandArrow {
+	background-image: url("resources/images/ui-icons_454545_256x240.png");
+}
+
+#tabs_container .ui-corner-top {
+	height: 18px;
+	text-align: center;
+}
+
+#tabs_container .ui-tabs-active .ui-tabs-anchor {
+	color: #555555;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#tabs_container .ui-tabs-anchor {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: bold;
+}
+
+#filmEstimateTabs .ui-corner-top {
+	height: 18px;
+	text-align: center;
+	width: 145px !important;
+}
+
+#filmEstimateTabs .ui-tabs-active .ui-tabs-anchor {
+	color: #555555;
+	font-size: 12px;
+	font-weight: bold;
+	font-family: Arial, Helvetica, sans-serif !important;
+}
+
+#filmEstimateTabs .ui-tabs-anchor {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-weight: bold;
+}
+
+.estimateCostCategoryFieldStyle {
+	float: left;
+	margin: 0px 10px 0px 0px;
+}
+
+.estimateCostCategorySubSection {
+	float: left;
+	margin: 0 72px;
+	background: none repeat scroll 0 0 #F8F8F8;
+	/*padding-left: 65px;*/
+}
+
+.estimateCostCategorySubHeader {
+	float: left;
+	margin: 0 68px;
+}
+
+.filmEstimateTabs {
+	margin: 10px 5px 10px 10px;
+	border-style: solid;
+	border-width: 1px;
+	border-style: solid;
+	border-style: solid;
+	border-color: #e7e7e7;
+	box-shadow: 3px 3px 3px #e7e7e7;
+	max-width: 725px;
+}
+
+#filmEstimateTabs {
+	font-size: 11px;
+}
+
+#filmEstimateTabs_container .ui-widget-content {
+	border: none;
+}
+
+#filmEstimateTabs .ui-widget {
+	font-size: 12px;
+}
+
+#filmEstimateTabs .subItemDetailsTitle .titleFormLabelStyle {
+	text-align: justify;
+	vertical-align: middle;
+	padding-left: 10px;
+	font-size: 12px;
+}
+
+.subItemDetailsTitle {
+	background: none repeat scroll 0 0 #E0E0E0;
+	border: 1px dotted;
+	margin: 10px;
+}
+
+.inputCostSize {
+	width: 100px;
+}
+
+.inputCommetSize {
+	width: 300px
+}
+
+.viewTitleColumn1 {
+	width: 25%;
+	text-align: right;
+	font-weight: bold;
+}
+
+.viewTitleColumn2 {
+	width: 3%;
+	text-align: center;
+}
+
+.viewTitleColumn3 {
+	width: 72%;
+	text-align: left;
+}
+
+.rowTitleDetails {
+	padding: 5px;
+}
+
+.editTitle {
+	font-size: 13px;
+	font-weight: bold;
+	padding: 20px;
+	text-align: center;
+	width: 92%;
+}
+
+.headingbutton1 {
+	color: #555555;
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #E6E6E6;
+	text-align: center;
+	padding: 10px;
+	height: 20px;
+}
+
+.homeStaticReportFrame1 {
+	padding: 6px;
+}
+
+.homeStaticReportFrame2 {
+	padding: 0px 11px;
+}
+
+.homeBirtReportFrame {
+	
+}
+
+.resultsLeftInnerDiv {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #F8F8F8;
+	border-color: #D8D8D8;
+	border-image: none;
+	border-style: solid;
+	border-width: 1px 1px 0;
+	max-width: 725px;
+}
+
+/****************************************************/
+	/***Overlay CSS**/
+	/****************************************************/ /*
+.overlayHeader{
+	font-family: Arial,Helvetica,sans-serif !important;
+	color:#000;
+	font-size:12px;
+	padding-left:5px;	
+	background-color:#d2d2d2;
+	height:20px;	
+}
+.overlayRow{
+	background-color: #ededed;
+    color: #000000;
+    font-family: Arial,Helvetica,sans-serif !important;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    padding-left: 5px;
+    text-align: left;
+}*/
+.overlayHeader {
+	background-image: url("../images/tableheadingbg_02.png");
+	background-repeat: repeat-x;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #555555;
+	font-size: 11px;
+	font-weight: bold;
+	text-transform: uppercase;
+	/*padding-left:5px;	*/
+	height: 20px;
+	text-align: center;
+}
+
+.overlayTotal {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #555555;
+	font-size: 11px;
+	text-transform: uppercase;
+	/*padding-left:5px;	*/
+	background-color: #F6F6F6;
+	height: 30px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.overlayRow { /*border: 1px solid red;
+	background-color: #ededed;*/
+	color: #000000;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: normal;
+	height: 30px;
+	/*padding-left: 5px;*/
+	text-align: center;
+}
+
+table.tableBorder {
+	border: 1px solid #e8e8e8;
+}
+
+table.tableBorder td {
+	border-left: 1px solid #e8e8e8;
+	border-bottom: 1px solid #e8e8e8;
+}
+
+.textBoxDigitalFeature {
+	border: 1px solid #d8d8d8;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	font-size: 11px;
+	font-weight: normal;
+	height: 20px;
+	width: 50px;
+}
+
+.textBoxDigitalTrailer {
+	border: 1px solid #d8d8d8;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	font-size: 11px;
+	font-weight: normal;
+	height: 20px;
+	width: 50px;
+}
+
+.addVendorImage {
+	height: 14px;
+	width: 14px;
+}
+
+.addAdhocServiceButton {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000;
+	font-size: 12px;
+	margin: 5px;
+	padding: 5px;
+	font-weight: bold;
+	background-color: #d2d2d2;
+	height: 20px;
+	float: right;
+	width: 146px;
+	background-image: url("/ffe/resources/images/ADD_Adhoc_Service.png");
+}
+
+.ffeDialogClass {
+	top: -1010px !important;
+}
+
+.ffeDialogClass .ui-dialog-titlebar-close {
+	float: right;
+}
+
+.ui-dialog-titlebar-close {
+	float: right;
+}
+
+.ui-dialog {
+	top: -850px !important;
+}
+
+.ui-widget-overlay {
+	opacity: 0.8 !important;
+}
+
+.ffeDialogClass .ui-dialog-titlebar {
+	height: 25px;
+}
+
+.ui-dialog-titlebar {
+	height: 25px;
+}
+
+.ffeDialogClass .ui-dialog-title {
+	font-family: Arial, Helvetica, sans-serif !important;
+	font-size: 16px;
+}
+
+.submitFilmEstimateButtonOverlay {
+	padding: 15px;
+	text-align: center;
+}
+
+.error {
+	color: #ff0000;
+	text-align: center;
+	font-family: Calibri;
+	font-size: 14px;
+}
+
+#estimateHome {
+	min-height: 450px;
+}
+
+#InnerLeftContainer {
+	float: left;
+	width: 739px;
+}
+
+.InnerRightContainer {
+	float: right;
+	width: 267px;
+}
+
+.InnerBoxMainCotainer {
+	padding-bottom: 12px
+}
+
+.InnerBoxLeftCotainer {
+	float: left;
+}
+
+.InnerBoxRightCotainer {
+	float: right;
+}
+
+.InnerBoxSmlTop {
+	background: url(../images/InnerBoxSmlTop.jpg) no-repeat;
+	height: 37px;
+	//width: 363px
+}
+
+.InnerBoxSmlMid {
+	background: url(../images/InnerBoxSmlMid.jpg) repeat-y;
+	//width: 363px
+}
+
+.InnerBoxTitle {
+	color: #555555;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 10px;
+	line-height: 30px
+}
+
+.InnerBoxBigTop {
+	background: url(../images/InnerBoxBigTop.jpg) no-repeat;
+	height: 37px
+}
+
+.InnerBoxBigMid {
+	background: url(../images/InnerBoxBigMid.jpg) repeat-y;
+	width: 739px
+}
+
+.InnerBoxRgtSmlTop {
+	background: url(../images/InnerBoxSmlRgtTop.jpg) no-repeat ;
+	background-size:100%;
+	height: 36px;
+	width: 267px;
+}
+
+.InnerBoxRgtSmlMid {
+	background: url(../images/InnerBoxSmlRgtMid.jpg) repeat-y;
+	width: 267px;
+	margin: 0px;
+	padding: 2px;
+	min-height: 100px
+}
+
+.tblDecor {
+	width: 260px;
+}
+
+.tblDecor th {
+	width: 260px;
+	color: #555555;
+	text-align: left;
+	background: url(../images/TopNavBg.gif);
+	height: 16px;
+	font-size: 10px;
+	border: 1px solid #cccccc;
+}
+
+.tblDecor td {
+	width: 260px;
+	color: #555555;
+	font-size: 10px;
+	border: 1px solid #cccccc;
+}
+
+.tblDecor td a {
+	color: #3795B0;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.txtBg {
+	background: url(../images/textboxBG.jpg) no-repeat;
+	height: 26px;
+	width: 210px;
+	padding-left: 2px;
+	padding-top: 2px;
+}
+
+.imgSearchEfx {
+	height: 20px;
+	border: none;
+	color: #555555;
+}
+
+.searchDiv {
+	width: 230px;
+	margin-left: 15px;
+	padding-top: 15px;
+}
+
+.quickLinkDiv {
+	width: 230px;
+	margin-left: 10px;
+}
+
+.txtColor {
+	color: #555555;
+}
+
+.linkText {
+	color: #00BAEF;
+	font-size: 12px;
+	text-decoration: none;
+}
+
+.quickLinksAction {
+	padding: 3px 0;
+}

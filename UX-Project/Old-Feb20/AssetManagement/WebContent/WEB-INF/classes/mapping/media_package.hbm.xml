@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.metadata.dto.MediaPackage" table="media_package" lazy="false">
+        <id name="media_package_id" type="int">
+            <column name="media_package_id" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="media_package_name" type="java.lang.String">
+            <column name="media_package_name" />
+        </property>
+        <property name="media_ingest_status" type="java.lang.String">
+            <column name="media_ingest_status" />
+        </property>
+        <property name="metadata_ingest_status" type="java.lang.String">
+            <column name="metadata_ingest_status" />
+        </property>
+        
+        <property name="status_id" type="java.lang.String">
+            <column name="status_id" />
+        </property>
+        
+       <property name="vendor_id" type="int">
+            <column name="vendor_id" />
+        </property>
+         <bag name="metadatalist" table="metadata" inverse="true" lazy="true" fetch="select" cascade="all" >                
+            <key column="media_package_id" />
+			<many-to-many column="metadata_vendor_attr_assoc_id" unique="true" class="com.igate.dam.metadata.dto.MetadataVendorAssoc" />
+           
+        </bag>
+       
+		 <many-to-one name="masterStatus" class="com.igate.dam.metadata.dto.MasterStatus">
+            <column name="STATUS_ID"  />
+       </many-to-one>
+        </class>
+        
+        
+</hibernate-mapping>

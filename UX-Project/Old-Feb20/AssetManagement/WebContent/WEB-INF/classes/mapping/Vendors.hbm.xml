@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.transcode.dto.Vendors" table="vendor" lazy="false">
+        <id name="vendorId" type="int">
+            <column name="vendor_id" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="vendorName" type="java.lang.String">
+            <column name="vendor_name" />
+        </property>    
+        <property name="vendorCode" type="java.lang.String">
+            <column name="vendor_code" />
+        </property>
+      
+        </class>      
+</hibernate-mapping>
+

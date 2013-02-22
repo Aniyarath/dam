@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.metadata.dto.Vendor" table="vendor" lazy="false">
+        <id name="vendor_id" type="int">
+            <column name="vendor_id" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="vendor_code" type="java.lang.String">
+            <column name="vendor_code" />
+        </property>
+        <property name="vendor_name" type="java.lang.String">
+            <column name="vendor_name" />
+        </property>
+        
+        <bag name="metadataVendorAssocList" table="metadata_vendor_attributes_assoc" inverse="true" lazy="true" fetch="select" cascade="all" >                
+            <key column="vendor_id" />
+			<many-to-many column="master_metadata_id" unique="true" class="com.igate.dam.metadata.dto.MasterMetadata" />
+           
+        </bag>
+      
+             
+    
+		
+        </class>
+        
+        
+</hibernate-mapping>

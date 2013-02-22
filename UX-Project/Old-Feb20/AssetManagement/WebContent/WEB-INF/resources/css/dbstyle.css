@@ -1,0 +1,310 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	background-color: #FFFFFF;
+	background-image: url("/ffe/resources/images/foxbg.jpg");
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	background-position: center top;
+	margin: 0;
+}
+
+.name {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 24px;
+	font-weight: bold;
+	color: #FFF;
+	padding-left: 0px;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+.toptext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: normal;
+	color: #FFFFFF;
+	padding-left: 0px;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+.new {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: normal;
+	color: #FFFFFF;
+	padding-right: 5px;
+	font-style: normal;
+	font-stretch: normal;
+}
+
+.menu {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000;
+	padding-right: 5px;
+	text-decoration: none;
+}
+
+.menu:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #03F;
+	padding-right: 5px;
+}
+
+.search {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 13px;
+	color: #000;
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+.heading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	font-weight: bold;
+	color: #555555;
+	padding-left: 5px;
+	text-decoration: none;
+}
+
+.quicklinktext {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	padding-left: 0px;
+	text-decoration: underline;
+}
+
+.tableheading {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #fff;
+	padding-left: 3px;
+	background-color: #0A2359;
+}
+
+/********/
+.BannerBgContainer {
+	background: url("../images/Banner_Bg.jpg") no-repeat scroll 0 0
+		transparent;
+	height: 80px;
+	width: 1039px;
+}
+
+.ClearFloat {
+	clear: both
+}
+
+#MainContainer {
+	width: 1039px;
+	margin: 0px auto;
+	height:auto;
+}
+
+.BannerBgContainer {
+	background: url(../images/Banner_Bg.jpg) no-repeat;
+	height: 80px;
+	width: 1039px
+}
+
+.WelcomeUserContainer {
+	width: 450px;
+	text-align: right;
+	float: right;
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+	padding: 12px 15px 0 0
+}
+
+.userRole {
+	color: #ffffff;
+	font-size: 13px;
+	font-weight: bold;
+}
+
+.TopLinkContainer {
+	float: right;
+	width: 420px;
+	text-align: center;
+	padding-top: 10px
+}
+
+a.TopLink:link,a.TopLink:visited {
+	color: #00baef;
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 24px;
+	padding: 0px 0 5px 5px
+}
+
+a.TopLink:hover {
+	color: #ffffff;
+	text-decoration: none;
+	font-size: 13px;
+	font-weight: bold;
+	line-height: 24px;
+	padding: 0px 0 5px 5px
+}
+
+.TopNavBgContainer {
+	background: url(../images/TopNavBg.gif) repeat-x;
+	height: 40px;
+	width: 1039px
+}
+/*.TopNavLinkContainer{width:990px; text-align:center; padding-top:8px}*/
+.TopNavLinkContainer {
+	padding: 0px;
+	
+}
+
+/* a.TopNavLink:link,a.TopNavLink:visited {
+	color: #3c3c3c;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 24px;
+	padding: 0px 0 5px 5px;
+	text-transform: uppercase
+}
+
+a.TopNavLink:hover {
+	color: #989898;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 24px;
+	padding: 0px 0 5px 5px;
+	text-transform: uppercase
+} */
+
+.InnerContentMain {
+	width:1039px;
+	padding-top:10px;
+	position:relative;
+}
+
+.FooterContainer {
+	padding-top:10px;
+	width:1039px;
+	height:50px;
+	position:relative;
+	margin-left:auto;
+	margin-right:auto;
+	
+}
+
+.FooterLinkContainer {
+	width: 1039px;
+	text-align: center;
+}
+
+a.FooterLink:link,a.FooterLink:visited {
+	color: #222222;
+	text-decoration: none;
+	font-size: 10px; /* font-weight:bold;*/
+	line-height: 24px;
+	padding: 0px 0 5px 3px;
+	text-transform: uppercase
+}
+
+a.FooterLink:hover {
+	color: #6e6e6e;
+	text-decoration: none;
+	font-size: 10px; /* font-weight:bold;*/
+	line-height: 24px;
+	padding: 0px 0 5px 3px;
+	text-transform: uppercase
+}
+
+.CopyRight {
+	color: #222222;
+	font-size: 10px; /* font-weight:bold;*/
+	text-align: center;
+	padding-top: 20px;
+	text-transform: uppercase
+}
+
+.Copy {
+	color: #222222;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+.InnerLeftContainer {
+	float: left;
+	width: 739px;
+
+}
+
+.InnerRightContainer {
+	float: right;
+	width: 267px;
+	border: 1px solid red
+}
+
+.InnerBoxMainCotainer {
+	padding-bottom: 12px;
+	
+}
+
+.InnerBoxLeftCotainer {
+	float: left;
+	margin-top:4px;
+	margin-left:4px;
+	
+}
+
+.InnerBoxRightCotainer {
+	float: right;
+	margin-top:4px;
+	margin-right:4px;
+	
+}
+
+.InnerBoxSmlTop {
+	background: url(../images/InnerBoxSmlTop.jpg) no-repeat;
+	height: 37px;
+	width: 363px
+}
+
+.InnerBoxSmlMid {
+	background: url(../images/InnerBoxSmlMid.jpg) repeat-y;
+	width: 363px;
+    margin-bottom:10px;
+}
+
+.InnerBoxTitle {
+	color: #555555;
+	font-size: 12px;
+	font-weight: bold;
+	text-transform: uppercase;
+	padding: 10px;
+	line-height: 30px
+	margin-left:4px;
+}
+
+.InnerBoxBigTop {
+	background: url(../images/InnerBoxBigTop.jpg) repeat-y;
+	height: 37px;
+	margin-left:4px;
+	width: 729px;
+}
+
+.InnerBoxBigMid {
+	background: url(../images/InnerBoxBigMid.jpg) repeat-y;
+	width: 729px;
+	border: 1px solid #CCCCCC;
+	margin-left:4px;
+	margin-bottom:4px;
+	
+}
+
+/********/

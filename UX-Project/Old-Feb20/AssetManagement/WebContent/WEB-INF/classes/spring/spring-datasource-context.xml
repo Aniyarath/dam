@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
+
+	<!-- PROPERTY PLACE HOLDER FOR LOCAL -->
+<!-- 	 <bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="locations" value="D:\Personal\C Data\VijayBackup\jbpm-installer\jboss-as-7.0.2.Final\standalone\configuration\ffegts.properties" />
+	</bean> -->
+
+	<tx:annotation-driven transaction-manager="txManager"/>
+
+	<bean id="appDataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://3.209.176.18:3306/dam" />
+		<property name="username" value="igateuser" />
+		<property name="password" value="123" />
+	</bean> 
+
+	<bean id="appSessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="appDataSource" />
+		<property name="useTransactionAwareDataSource" value="false"/>
+		<!-- <property name="packagesToScan" value = "com.nbcu.addressbook"/> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+
+				<!-- Enable second level caching in Hibernate 
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.cache.region.factory_class">net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory
+				</prop>
+				-->
+				<!-- <prop key="hibernate.cache.provider_class">${hibernate.cache.provider_class}</prop> -->
+
+			</props>
+		</property>
+	
+		<property name="mappingResources">
+			<list>
+				<!-- -->
+				<value>mapping/ProfileCreation.hbm.xml</value>
+				<value>mapping/Vendors.hbm.xml</value>
+				<value>mapping/metadata_attribute_types.hbm.xml</value>
+				<value>mapping/metadata_attribute_values.hbm.xml</value>
+				<value>mapping/metadata_vendor_attributes_assoc.hbm.xml</value>
+				<value>mapping/vendor.hbm.xml</value>
+				<value>mapping/media_package.hbm.xml</value>
+				<value>mapping/metadata.hbm.xml</value>
+				<value>mapping/master_metadata.hbm.xml</value>
+				<value>mapping/master_status.hbm.xml</value>
+				<value>mapping/media_package_files.hbm.xml</value>
+				<value>mapping/PublishProfile.hbm.xml</value>
+				<value>mapping/media_pkg_workflow_seq.hbm.xml</value>
+				<value>mapping/person.hbm.xml</value>
+				<value>mapping/app_role_person_assoc.hbm.xml</value>
+				<value>mapping/application_role.hbm.xml</value>
+				<value>mapping/app_role_permission_assoc.hbm.xml</value>
+				<value>mapping/application_permissions.hbm.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="appSessionFactory" />
+	</bean>
+
+</beans>

@@ -1,0 +1,122 @@
+.contentContainer{
+	
+	}
+
+.videoPreviewContainer{
+	//float:right;
+	margin-left:0px;
+	visibility:visible;
+
+}
+.videoPreviewContainer > img{
+	visibility:visible;
+	padding-right:3px;
+	margin-right:13px;
+}
+
+#tableOuterDiv{
+font-size: 125%;
+color: #444444;
+font-family: tahoma,verdana,arial,sans-serif;
+overflow:hidden;
+
+}
+.falseMenuContainer{
+	margin-top:0px;
+	float:left;
+	}
+h1#tableOuterDiv, #tableOuterDiv h1 {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+	border-bottom-width: 0;
+    margin-bottom: 0;
+    padding-left: 10px;
+	font-size: 110%;
+	font-family: tahoma,verdana,arial,sans-serif;
+    border-color: #CCCCCC;
+    border-image: none;
+    border-style: solid;
+    border-width: 0 0 1px;
+    color: #666666;
+    cursor: pointer;
+    margin: 0 0 0.5em;
+    padding: 5px 0px 4px 5px;;
+    background-color:#EEEEEE;
+
+    overflow:hidden;
+}
+h1#tableOuterDiv:hover, #tableOuterDiv h1:hover {
+	background-color:#EEEEEE;
+}
+.collapsedImage{
+	background: url("images/table_collapse.gif") no-repeat scroll right center transparent;
+	background-color:transparent;
+	
+}
+.expandedImage{
+	background: url("images/table_expand.gif") no-repeat scroll right center transparent;
+	background-color:#EEEEEE;
+}
+div.tableInnerDiv {
+	font-size: 70%;
+	padding:0;
+    margin-bottom: 1em;
+	color: #444444;
+    font-family: tahoma,verdana,arial,sans-serif;
+}
+
+div.tableInnerDiv table.tableForm {
+    margin-bottom: 0;
+}
+.hover {
+   background-color:#FDFFD1;
+}
+table.tableForm.zebraTable {
+    border: 1px solid #DDDDDD;
+    border-collapse: collapse;
+    margin-top: 0;
+	 width: 100%;
+	 font-size: 100%;
+	 border-spacing: 0;
+	 color: #444444;
+	  background-color: #EEEEEE;
+    font-family: tahoma,verdana,arial,sans-serif;
+}
+
+table.zebraTable tr.even {
+    background-color: #EEEEEE;
+}
+table.zebraTable tr.even th, table.zebraTable tr.even td {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+table.tableForm.zebraTable th, table.tableForm.zebraTable td {
+    padding-bottom: 6px !important;
+    padding-left: 10px !important;
+}
+table.tableForm.zebraTable th {
+    width: 30%;
+}
+table.tableForm th {
+    padding: 6px 0 0 0;
+    text-align: left;
+    width: 108px;
+}
+table.tableForm th, table.tableForm td {
+    padding: 3px 0;
+    vertical-align: top;
+}
+
+table.tableForm td.padded {
+    padding: 3px 6px 0 0;
+    width:100%;
+}
+
+
+table.tableForm td a {
+    color: #009BC6;;
+    font-weight: bold;
+    outline: medium none;
+    text-decoration: none;
+}

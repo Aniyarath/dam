@@ -1,0 +1,74 @@
+/* tables */
+
+table.tablesorter {
+	font-family:verdana,arial;
+	background-color: white;
+	margin:0px;
+	font-size: 7pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 7pt;
+	padding-bottom: 0px;
+	padding-left: 2.0em;
+	padding-right: 1.0em;
+	padding-top: 0px;
+	/*this makes the header fixed for IE5+*/
+	position:relative; 
+	top: expression(offsetParent.scrollTop); 
+	z-index:10;
+}
+table.tablesorter thead tr .header {
+	background-image: url(bg.gif);
+	background-repeat: no-repeat;
+	background-position: center left;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	padding-bottom: 0px;
+	padding-left: 2px;
+	padding-right: 2px;
+	padding-top: 0px;
+	vertical-align: middle;
+}
+
+table.tablesorter tbody tr.even td {
+	background-color: #FFF;
+	color: #3D3D3D;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+	color: #3D3D3D;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}
+
+table.tablesorter tbody tr.subsectionhead{
+	color: #3D3D3D;
+	padding-bottom: 0px;
+	padding-left: 2.0em;
+	padding-right: 2.0em;
+	padding-top: 0px;
+	background-color: #FFCC99;
+	vertical-align: top;
+}
+
+table.tablesorter tbody tr.subsectionbody{
+	color: #3D3D3D;
+	padding-bottom: 0px;
+	padding-left: 2.0em;
+	padding-right: 2.0em;
+	padding-top: 0px;
+	background-color: #FFFFCC;
+	vertical-align: top;
+}

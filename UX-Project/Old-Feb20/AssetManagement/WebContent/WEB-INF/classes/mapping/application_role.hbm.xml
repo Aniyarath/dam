@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.app.model.Role" table="application_role" lazy="false">
+        <id name="APP_ROLE_ID" type="int">
+            <column name="APP_ROLE_ID" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="CODE" type="java.lang.String">
+            <column name="CODE" />
+        </property>
+        <property name="NAME" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        
+       <property name="DESCRIPTION" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+      <property name="LAST_UPDT_DT_TM" type="date">
+            <column name="LAST_UPDT_DT_TM" />
+        </property>
+             
+    <property name="CRT_DT_TM" type="date">
+            <column name="CRT_DT_TM" />
+        </property>
+		<property name="DELETED_FLAG" type="java.lang.String">
+            <column name="DELETED_FLAG" />
+        </property>
+        </class>
+        
+        
+</hibernate-mapping>

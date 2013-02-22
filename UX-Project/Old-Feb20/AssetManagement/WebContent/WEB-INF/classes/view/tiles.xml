@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions> 
+  <definition name="tiles_general_layout" template="/WEB-INF/jsp/general/tiles_template.jsp">
+      <put-attribute name="header" value="/WEB-INF/jsp/general/header_home.jsp"/>
+      <put-attribute name="menu" value="/WEB-INF/jsp/general/menu_home.jsp"/>
+      <put-attribute name="innerRightContainer" value="/WEB-INF/jsp/general/right_menu_tile.jsp"/>         
+      <put-attribute name="innerLeftContainer" value=""/>           
+      <put-attribute name="footer" value="/WEB-INF/jsp/general/footer_home.jsp"/>
+   </definition> 
+   
+   <definition name="tiles_home_layout" extends="tiles_general_layout">
+      <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/homecontent.jsp"/>           
+   </definition> 
+  
+   <definition name="add_title" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_form.jsp"/> 
+   </definition>
+   
+   <definition name="profile_layout" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/profile.jsp"/> 
+   </definition>
+   
+   <definition name="create_profile_layout" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/addprofile.jsp"/> 
+   </definition>
+   
+   
+   <definition name="display_layout" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/display.jsp"/> 
+   </definition>
+   
+   <definition name="add_profile_layout" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/success.jsp"/> 
+   </definition>
+   
+   <definition name="update_profile_layout" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/updateprofile.jsp"/> 
+   </definition>
+   
+   <definition name="package_search_results" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/package_results.jsp"/>   		
+   </definition>
+   
+   <definition name="admin_home" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_form.jsp"/>   		
+   </definition>
+   
+   <definition name="load_metadata_details" extends="tiles_general_layout">
+   		  <put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/loadmetadata.jsp"/> 
+   </definition>
+   <definition name="user_attribute_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/useraddattribute.jsp"/>   		
+   </definition>
+   
+   <definition name="user_attribute_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/useraddattributesuccess.jsp"/>   		
+   </definition>
+   
+   <definition name="user_updateattribute_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/updateattributesuccess.jsp"/>   		
+   </definition>
+   
+   <definition name="publish_profile_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publish_form.jsp"/>   		
+   </definition>
+   
+   <definition name="add_Publishprofile_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/addPublishprofile.jsp"/>   		
+   </definition>
+   
+   <definition name="publish_Profiledisplay_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publishProfiledisplay.jsp"/>   		
+   </definition>
+   <definition name="update_Publishprofile_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/updatePublishprofile.jsp"/>   		
+   </definition>
+   
+   <definition name="publishprofile_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publishprofilesuccess.jsp"/>   		
+   </definition>
+
+   <definition name="add_attribute_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/addattribute.jsp"/>   		
+   </definition>
+   
+   
+   <definition name="success_add_attribute_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/metadatasuccess.jsp"/>   		
+   </definition>
+   
+   <!--  -->
+   
+   
+  <definition name="show_media_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/showfiles.jsp"/>   		
+   </definition>
+   
+   <definition name="publish_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publishPage.jsp"/>   		
+   </definition>
+   
+     <definition name="profiles_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/profiles.jsp"/>   		
+   </definition>
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  
+  
+ 
+   <definition name="show_media_layouts" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/showfile.jsp"/>   		
+  </definition>
+
+   <definition name="profile_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publish_profiles.jsp"/>   		
+   </definition>
+
+
+
+
+
+
+
+
+
+
+
+
+
+     <definition name="publish_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/publishsuccess.jsp"/>   		
+   </definition>
+   
+   <definition name="videopreview_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/videopreview.jsp"/>   		
+   </definition>
+   
+   <definition name="search_results" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/searchresults.jsp"/>   		
+   </definition>
+   
+    <definition name="edit_metadata_details" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/editmetadatadetails.jsp"/>   		
+   </definition>
+   
+    <definition name="taskqueue_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/taskqueue.jsp"/>   		
+   </definition>
+     
+    <definition name="add_attribute_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/view_vendor_attributes.jsp"/>   		
+   </definition>
+   
+  <definition name="fileupload_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/fileupload.jsp"/>   		
+   </definition> 
+   
+   <definition name="results_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/results.jsp"/>   		
+   </definition> 
+   
+   <definition name="metadata_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/metadatasuccess.jsp"/>   		
+   </definition> 
+   
+     <definition name="upload_success_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/uploadsuccess.jsp"/>   		
+   </definition> 
+   
+    <definition name="error_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/error.jsp"/>   		
+   </definition> 
+   
+    <definition name="dynamicWF_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/dynamicWF.jsp"/>   		
+   </definition> 
+   
+    <definition name="update_workflow_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/updateworkflow.jsp"/>   		
+   </definition> 
+   
+     <definition name="workflow_error_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/workflowerror.jsp"/>   		
+   </definition> 
+   
+  <!-- TABS  -->
+   
+   <definition name="add_attribute_layout1" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/title_form1.jsp"/>   		   		
+   </definition>
+   
+   <definition name="view_attribute_layout" extends="tiles_general_layout">
+   		<put-attribute name="innerLeftContainer" value="/WEB-INF/jsp/view_vendor_attributes.jsp"/>   		   		
+   </definition>  
+   
+   
+</tiles-definitions>

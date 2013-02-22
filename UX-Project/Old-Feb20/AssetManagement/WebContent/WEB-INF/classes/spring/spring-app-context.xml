@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<import resource="spring-datasource-context.xml" />
+	<import resource="spring-aop-context.xml" />
+	<import resource="spring-dao-context.xml" />
+	
+		<import resource="spring-jbpm-context.xml" />
+		
+	<bean id="damHumanTaskService" class="com.igate.dam.process.task.service.impl.DAMHumanTaskServiceImpl">
+	<property name="taskClient" ref="taskClient" />
+	</bean>	
+
+	<bean id="profileCreationService"
+		class="com.igate.dam.transcode.service.ProfileCreationServiceImpl">
+		<property name="profileCreationDAO" ref="profileCreationDAO" />
+	</bean>
+	
+	
+	<bean id="metadataService"
+		class="com.igate.dam.metadata.service.impl.MetadataServiceImpl">
+		<property name="metadataAttributeTypesDAO" ref="metadataAttributeTypesDAO" />
+		<!-- <property name="metadataAttributeValuesDAO" ref="metadataAttributeValuesDAO"/> -->
+	</bean> 
+		
+		
+		<bean id="mediaPackageService"
+		class="com.igate.dam.pack.service.impl.MediaPackageServiceImpl">
+		
+		<property name="mediaPackageDAO" ref="mediaPackageDAO" />
+		
+	</bean>
+	
+	<bean id="commonControllerUtil"
+		class="com.igate.dam.common.framework.util.CommonControllerUtil">
+		
+		<property name="mediaPackageService" ref="mediaPackageService" />
+		<property name="damHumanTaskService" ref="damHumanTaskService" />
+		
+	</bean>
+	
+	
+	<bean id="publishProfileService"
+		class="com.igate.dam.publish.service.PublishProfileServiceImpl">
+		<property name="publishProfileDAO" ref="publishProfileDAO" />
+	</bean>
+	
+	<bean id="publishService"
+		class="com.igate.dam.publish.service.PublishServiceImpl">
+		<property name="publishDAO" ref="publishDAO" />
+	</bean>
+	
+	<bean id="uploadMetadataService"
+		class="com.igate.dam.uploadmetadata.service.UploadMetadataServiceImpl">
+		<property name="uploadMetadataDAO" ref="uploadMetadataDAO" />
+	</bean>
+	
+	<bean id="workflowSeqService"
+		class="com.igate.dam.workflowseq.service.impl.WorkflowSeqServiceImpl">
+		<property name="workflowSeqDAO" ref="workflowSeqDAO" />
+	</bean>
+	
+	<bean id="userService"
+		class="com.igate.dam.app.service.impl.UserServiceImpl">
+		<property name="userDao" ref="userDao" />
+	</bean>
+	
+</beans>
+

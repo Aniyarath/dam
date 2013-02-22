@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.publish.dto.PublishProfile" table="publish_profile" lazy="false">
+        <id name="publish_profile_id" type="int">
+            <column name="publish_profile_id" />
+            <generator class="increment"></generator>
+        </id>
+        <property name="publish_profile_name" type="java.lang.String">
+            <column name="publish_profile_name" />
+        </property>
+ <property name="vendor_id" type="int">
+            <column name="vendor_id" />
+        </property> 
+        <property name="publish_profile_path" type="java.lang.String">
+            <column name="publish_profile_path" />
+        </property>
+        
+	
+        </class>      
+</hibernate-mapping>

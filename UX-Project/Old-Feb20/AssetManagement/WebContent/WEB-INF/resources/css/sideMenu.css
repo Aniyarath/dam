@@ -1,0 +1,361 @@
+
+.menuHeading{
+	word-wrap:break-word;
+	background-color:#D8C3C3;
+	color:#000000 !important;
+	
+	}
+	.headingText{
+	padding-left:5px;
+	padding-right:5px;
+	color:#000000 !important;
+	font-weight:900;
+	font-size:125%;
+	}
+	#selectedMenu{
+	color:#000000 !important;
+	font-weight:900;
+	font-size:150%;
+	margin-top:25px;
+	}
+.TopNavBgContainer {
+    background: url("../images/TopNavBg.gif") repeat-x scroll 0 0 transparent;
+    height: 40px;
+    margin-top: -12px;
+    width: 1039px;
+}
+#homeMenuButton{
+	margin-left:-39px !important;
+	
+	}
+
+
+.sideMenuHover {
+   background-color:#F2EFEF !important;
+}
+#de-side-nav.open {
+    display: table-cell;
+    transition: width 0.05s ease-out 0s;
+    width: 155px;
+}
+#de-side-nav {
+    background: url("images/sidebar-shadow.png") repeat-y scroll right top rgb(247, 247, 247);
+    border-right: 1px solid rgb(204, 204, 204);
+    display: table-cell;
+    transition: width 0.05s ease-out 0s;
+    width: 48px;
+}
+#de-side-nav ul {
+    margin: 0;
+    padding: 0;
+	
+}
+.search-list, .sidebar-list {
+    margin: -10px -14px;
+    padding: 0;
+}
+.dropdown {
+    margin: 1em 0;
+    padding: 0 0 0 40px;
+}
+#de-side-nav ul li.current:after {
+    border-bottom: 21px solid transparent;
+    border-left: 8px solid rgb(99, 189, 217);
+    border-top: 21px solid transparent;
+    content: "";
+    display: block;
+    float: left;
+    left: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+
+}
+#de-side-nav ul li.current {
+    position: relative;
+	height:42px;
+}
+#de-side-nav ul li {
+font-size: 13px;
+    line-height: 1.231;
+	height:42px;
+    margin: 0;
+    padding: 0;
+}
+.search-list li, .sidebar-list li {
+    color: rgb(73, 73, 75);
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+#de-side-nav.open li a:before, #de-side-nav.open li a:after {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    content: "";
+}
+.anchor:before, .anchor:after {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    content: "";
+}
+.tooltip:after, .tooltip:before {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s linear 0s;
+}
+#de-side-nav.open li a:before, #de-side-nav.open li a:after {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    content: "";
+}
+.anchor:before, .anchor:after {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    content: "";
+}
+.tooltip:after, .tooltip:before {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.2s linear 0s;
+}
+#de-side-nav li.current a, #de-side-nav li.current a:hover {
+    background: linear-gradient(to right, rgb(43, 153, 186) 0%, rgb(48, 154, 186) 2%, rgb(43, 155, 186) 4%, rgb(50, 155, 188) 6%, rgb(45, 156, 187) 7%, rgb(50, 157, 189) 9%, rgb(51, 162, 193) 19%, rgb(62, 174, 204) 39%, rgb(68, 176, 207) 43%, rgb(66, 177, 209) 46%, rgb(72, 179, 211) 50%, rgb(70, 179, 211) 52%, rgb(75, 184, 216) 59%, rgb(76, 185, 217) 67%, rgb(85, 188, 218) 72%, rgb(94, 188, 217) 81%, rgb(99, 189, 217) 96%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid rgb(44, 129, 166);
+    border-top: 1px solid rgb(44, 129, 166);
+    height: 25px;
+}
+.anchor, .anchor:hover {
+    background: linear-gradient(to right, rgb(43, 153, 186) 0%, rgb(48, 154, 186) 2%, rgb(43, 155, 186) 4%, rgb(50, 155, 188) 6%, rgb(45, 156, 187) 7%, rgb(50, 157, 189) 9%, rgb(51, 162, 193) 19%, rgb(62, 174, 204) 39%, rgb(68, 176, 207) 43%, rgb(66, 177, 209) 46%, rgb(72, 179, 211) 50%, rgb(70, 179, 211) 52%, rgb(75, 184, 216) 59%, rgb(76, 185, 217) 67%, rgb(85, 188, 218) 72%, rgb(94, 188, 217) 81%, rgb(99, 189, 217) 96%) repeat scroll 0 0 transparent;
+    border-bottom: 1px solid rgb(44, 129, 166);
+    border-top: 1px solid rgb(44, 129, 166);
+    height: 25px;
+}
+#de-side-nav ul li a {
+    border: medium none;
+    height: 25px;
+    padding: 0;
+    position: relative;
+}
+.anchor{
+    border: medium none;
+    height: 25px;
+    padding: 0;
+    position: relative;
+}
+#de-side-nav ul li a {
+    font-style: italic;
+    font-weight: normal;
+    margin: 0;
+    padding: 8px 20px;
+}
+
+.anchor {
+    font-style: italic;
+    font-weight: normal;
+    margin: 0;
+    padding: 8px 20px;
+}
+.search-list li.current a.search-href, .sidebar-list li.current a {
+    background: none repeat scroll 0 0 rgb(61, 170, 205);
+    color: rgb(255, 255, 255);
+}
+.anchor.search-href, .anchor {
+    background: none repeat scroll 0 0 rgb(61, 170, 205);
+    color: rgb(255, 255, 255);
+}
+.search-list li a.search-href, .sidebar-list a {
+    border-bottom: 1px solid rgb(229, 229, 229);
+    color: rgb(151, 151, 151);
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 4px;
+    padding: 10px 30px;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+.anchor.search-href, .anchor {
+    border-bottom: 1px solid rgb(229, 229, 229);
+    color: rgb(151, 151, 151);
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 4px;
+    padding: 10px 30px;
+    text-decoration: none;
+    word-wrap: break-word;
+}
+input, a, button {
+    outline: medium none !important;
+}
+a {
+    text-decoration: none;
+}
+#de-side-nav .current.viewmediaviewer .icon {
+    background-position: 240px 26px;
+}
+#de-side-nav ul li.current a .icon {
+    background-position: 0 28px;
+}
+#de-side-nav .viewmediaviewer .icon {
+    background-position: 240px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 26px;
+}
+#de-side-nav ul li a .icon {
+    background: url("images/side-bar-nav-icons.png") repeat scroll 0 0 transparent;
+    float: left;
+    height: 22px;
+    left: -10px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0px;
+    width: 20px;
+}
+#de-side-nav .current .text {
+    color: rgb(255, 255, 255);
+    top: 12px;
+}
+#de-side-nav ul li .text {
+    color: rgb(151, 151, 151);
+    font-size: 12px;
+    left: 45px;
+    position: absolute;
+    top: 10px;
+}
+
+#de-side-nav .divider {
+    background: none repeat scroll 0 0 rgb(221, 221, 221);
+    border-bottom: 1px solid rgb(255, 255, 255);
+    height: 1px;
+    width: 100%;
+}
+#de-side-nav ul li {
+    margin: 0;
+    padding: 0;
+}
+.search-list li, .sidebar-list li {
+    color: rgb(73, 73, 75);
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+}
+
+#de-side-nav .comment .icon {
+    background-position: -20px 0 ;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 26px;
+}
+
+#de-side-nav .current.comment .icon {
+    background-position: -20px 26px;
+}
+#de-side-nav .editassetcategories .icon, #de-side-nav .projects-libraryassets .icon {
+    background-position: 26px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 26px;
+}
+#de-side-nav .current.editassetcategories .icon, #de-side-nav .current.projects-libraryassets .icon {
+    background-position: 26px 26px;
+}
+
+#de-side-nav .editassettags .icon {
+    background-position: 187px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 26px;
+}
+#de-side-nav .current.editassettags .icon {
+    background-position: 187px 26px;
+}
+
+#de-side-nav .asseteditorlibraries .icon, #de-side-nav .projects-librarygeneral .icon {
+    background-position: 160px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 26px;
+}
+
+#de-side-nav .current.asseteditorlibraries .icon, #de-side-nav .current.projects-librarygeneral .icon {
+    background-position: 160px 26px;
+}
+
+#de-side-nav .viewmap .icon {
+    background-position: 213px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width:26px;
+}
+
+
+#de-side-nav .current.viewmap .icon {
+    background-position: 213px 26px;
+}
+
+#de-side-nav .viewattachments .icon {
+    background-position: 134px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 24px;
+}
+
+#de-side-nav .current.viewattachments .icon {
+    background-position: 134px 26px;
+}
+
+#de-side-nav .assetpermissions .icon, #de-side-nav .librarypermissions .icon {
+    background-position: 85px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 19px;
+}
+
+#de-side-nav .viewassetpreviewhistory .icon {
+    background-position: 109px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 24px;
+}
+
+#de-side-nav .current.viewassetpreviewhistory .icon {
+    background-position: 109px 26px;
+}
+
+#de-side-nav.open #opener .icon {
+    background-position: 44px 26px;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 19px;
+}
+
+#de-side-nav.closed #opener .icon {
+    background-position: 44px 0;
+    height: 26px;
+    left: -10px;
+    top: 0px;
+    width: 19px;
+}
+#details .tableholder {
+    overflow-y: auto;
+}
+
+
+#de-side-nav .current.assetpermissions .icon {
+    background-position: 86px 26px;
+}

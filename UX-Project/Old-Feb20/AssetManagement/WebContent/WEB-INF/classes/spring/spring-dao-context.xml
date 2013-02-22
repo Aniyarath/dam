@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	
+	 <import resource="spring-datasource-context.xml"/>	
+
+	<import resource="spring-aop-context.xml"/>
+	
+	<bean id="profileCreationDAO" class="com.igate.dam.transcode.dao.ProfileCreationDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />
+			
+		
+	</bean>
+	
+	<bean id="metadataAttributeTypesDAO" class="com.igate.dam.metadata.dao.impl.MetadataAttributeTypesDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />	
+	</bean>
+	
+	
+	<bean id="mediaPackageDAO" class=" com.igate.dam.pack.dao.impl.MediaPackageDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />	
+	</bean>
+	
+	<bean id="publishProfileDAO" class="com.igate.dam.publish.dao.PublishProfileDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />
+			
+		
+	</bean>
+	
+	<bean id="publishDAO" class="com.igate.dam.publish.dao.PublishDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />
+			
+		
+	</bean>
+	
+	<bean id="uploadMetadataDAO" class="com.igate.dam.uploadmetadata.dao.UploadMetadataDAOImpl">
+  <property name="sessionFactory" ref="appSessionFactory" /> 
+  </bean>
+	
+	
+	<bean id="workflowSeqDAO" class="com.igate.dam.workflowseq.dao.impl.WorkflowSeqDAOImpl">
+		<property name="sessionFactory" ref="appSessionFactory" />
+	</bean>
+	
+	 <bean id="userDao" class="com.igate.dam.app.dao.impl.UserDaoImpl">
+	<property name="sessionFactory" ref="appSessionFactory"/> 
+	 </bean>
+</beans>

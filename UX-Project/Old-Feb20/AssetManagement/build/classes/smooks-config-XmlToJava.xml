@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd" xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
+  <params>
+    <param name="stream.filter.type">SAX</param>
+    <param name="inputType">input.xml</param>
+    
+  </params>
+  <jb:bean beanId="listmetadata" class="com.igate.dam.uploadmetadata.dto.ListMetadata" createOnElement="MetadataItems">
+    <jb:wiring beanIdRef="metadataItems" property="metadataItems"/>
+  </jb:bean>
+  <jb:bean beanId="metadataItems" class="java.util.ArrayList" createOnElement="MetadataItems">
+    <jb:wiring beanIdRef="Metadata"/>
+  </jb:bean>
+  <jb:bean beanId="Metadata" class="com.igate.dam.uploadmetadata.dto.Metadata" createOnElement="/MetadataItems/Metadata">
+    <jb:value data="/MetadataItems/Metadata/name" property="name"/>
+    <jb:value data="/MetadataItems/Metadata/value" property="value"/>
+  </jb:bean>
+</smooks-resource-list>

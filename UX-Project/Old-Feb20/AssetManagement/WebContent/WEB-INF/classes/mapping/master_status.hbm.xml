@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 10, 2012 7:43:01 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.igate.dam.metadata.dto.MasterStatus" table="master_status" lazy="false">
+        <id name="statusId" type="java.lang.String">
+            <column name="STATUS_ID" />
+            
+        </id>
+        <property name="statusName" type="java.lang.String">
+            <column name="STATUS_NAME" />
+        </property>
+        <property name="statusDescription" type="java.lang.String">
+            <column name="STATUS_DESCRIPTION" />
+        </property>
+        </class>
+        
+        
+</hibernate-mapping>
+

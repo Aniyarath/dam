@@ -1,0 +1,135 @@
+.tablesorter {
+	font-family:sans-serif;
+	background-color: #E6EEEE;
+	margin:0px;
+	font-size: 11px;
+	width: 100%;
+	text-align: left;
+	font-weight:normal;
+	color:black;
+}
+
+	.jquery-dialog{
+	  overflow-y: auto;
+	  height: auto;
+	}
+
+div.contentWrap {
+		height:630px;
+		overflow-y:auto;
+	}
+	
+.apple_overlay {
+		/* initially overlay is hidden */
+		display:none;
+
+		/* growing background image */
+		/*background-image:url(white.png);*/
+
+		/*
+		  width after the growing animation finishes
+		  height is automatically calculated
+		  */
+		width:987px;
+
+		/* some padding to layout nested elements nicely  */
+		padding:35px;
+
+		/* a little styling */
+		font-size:11px;		
+	}	
+
+.apple_overlay .close {
+		background-image:url(resources/images/close.png);
+		position:absolute; right:5px; top:5px;
+		cursor:pointer;
+		height:35px;
+		width:35px;
+	}
+
+#taskActions
+{
+	font-size: 8pt;
+    height: 19px;
+    font-family:verdana,arial;
+    
+}
+#taskOp
+{
+	font-family:verdana,arial;
+	padding-left: 1%;
+	font-size: 8pt;
+}
+
+.odd {
+     background-color:#FFFFFF;
+     color:black;
+     text-align: justify;
+}
+.even {
+     background-color:#F0F0F6;
+     color:black;
+     text-align: justify;
+}
+
+.sortable
+{
+	color: black;
+	background-color:#E6EEEE;
+	font-size:11px;
+	font-weight:italic;
+	text-decoration:none;
+}
+.sorted
+{
+	color: black;
+	background-color:#E6EEEE;
+	font-size:11px;
+	font-weight:italic;
+	text-decoration:none;
+}
+
+.bpm-graphView-activityImage {
+  background-image: url(./resources/images/play_red_big.png);
+  background-repeat:no-repeat;
+  width:16px;
+  height:16px;
+}
+.imgbutton
+{
+	width:3%;
+	height:5%;
+}
+.taskopnbut
+{
+	text-align: center;
+}
+#tasktb a,a:visited,a:hover {  
+color: black;  
+text-decoration: none;
+white-space:nowrap;
+}
+
+.ffeTaskQueue .ui-icon-closethick{
+	float: right;
+}
+
+.ffeTaskQueue .ui-state-hover{
+	float: right;
+}
+
+.ffeTaskQueue .ui-dialog-titlebar{
+	height:25px;
+}
+
+.ffeTaskQueue .ui-dialog{
+	top: -650px !important; 
+}
+
+.ui-dialog {
+	top: -650px !important; 
+}
+
+.ffeTaskQueueRegionProcess .bpm-graphView-activityImage{
+left:200px !important;
+}

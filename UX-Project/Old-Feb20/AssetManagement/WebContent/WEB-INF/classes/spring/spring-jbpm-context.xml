@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jbpm="http://drools.org/schema/drools-spring"
+	xmlns:tx="http://www.springframework.org/schema/tx"        
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/jee
+http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+http://www.springframework.org/schema/tx    
+http://www.springframework.org/schema/tx/spring-tx.xsd
+http://drools.org/schema/drools-spring
+http://drools.org/schema/drools-spring.xsd">
+
+<bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+<property name="url" value="jdbc:mysql://3.209.176.18:3306/jbpmworkflow?autoReconnect=true"/>
+<property name="username" value="igateuser"/>
+<property name="password" value="123"/>
+</bean>
+
+<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
+                  p:dataSource-ref="ds">
+<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+<property name="persistenceUnitName" value="org.jbpm.persistence.jpa" /> 
+
+<property name="jpaVendorAdapter">
+<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+<property name="database" value="MYSQL"/>
+<property name="showSql" value="true"/>   
+<property name="databasePlatform" value="org.hibernate.dialect.MySQL5Dialect" />
+</bean>          
+</property>
+</bean>
+
+
+
+<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" p:entityManagerFactory-ref="entityManagerFactory">
+<property name="dataSource" ref="ds"/>
+</bean>
+
+
+<jbpm:kbase id="kbase">
+    <jbpm:resources>
+    <!--<jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/TestWorkFlow.bpmn"/>
+    --><!--<jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/DynamicWorkFlow.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/DynamicWorkFlowWithFactHandle.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Ingest.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Encode.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/QA.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Publish.bpmn"/>
+    <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Archive.bpmn"/>
+    -->
+    <!--<jbpm:resource type="DRL" source="classpath:com/igate/dam/dynamic/workflow/process/AXN.drl"></jbpm:resource>
+    
+    --><!--
+    
+    <jbpm:resource type="CHANGE_SET" source="classpath:com/igate/dam/dynamic/workflow/changeset/ChangeSet.xml"/>
+    -->
+    
+    </jbpm:resources>
+  </jbpm:kbase>
+  
+<jbpm:ksession id="ksession" type="stateful" kbase="kbase" >
+<!--<jbpm:configuration>
+      <jbpm:jpa-persistence>
+        <jbpm:entity-manager-factory ref="entityManagerFactory"/>
+        <jbpm:transaction-manager ref="transactionManager"/>
+      </jbpm:jpa-persistence>
+      
+    </jbpm:configuration>
+-->
+</jbpm:ksession>
+
+<!-- Declare a TaskClient -->
+  <bean class="org.jbpm.task.service.mina.MinaTaskClientConnector" id="taskClientConnector">
+    <constructor-arg value="taskClient"/>
+    <constructor-arg>
+      <bean class="org.jbpm.task.service.mina.MinaTaskClientHandler">
+        <constructor-arg>
+          <bean class="org.drools.SystemEventListenerFactory" factory-method="getSystemEventListener"/>
+        </constructor-arg>
+      </bean>
+    </constructor-arg>
+  </bean>
+  <bean class="org.jbpm.task.service.TaskClient" id="taskClient">
+    <constructor-arg ref="taskClientConnector"/>
+  </bean>
+ 
+  <!-- Declare a HumanTaskHandler. It uses previously created TaskClient -->
+  <bean class="org.jbpm.task.service.AsyncTaskServiceWrapper" id="humanTaskClient">
+    <constructor-arg ref="taskClient"/>
+  </bean>
+  <bean class="org.jbpm.process.workitem.wsht.SyncWSHumanTaskHandler" id="humanTaskHandler">
+    <constructor-arg ref="humanTaskClient"/>
+    <constructor-arg ref="ksession"/>
+  </bean>
+  <!-- Configure its connection to the local server -->
+  <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" depends-on="humanTaskHandler" id="setConnection">
+    <property name="targetObject" ref="humanTaskHandler"/>
+    <property name="targetMethod" value="setConnection"/>
+    <property name="arguments">
+      <list>
+        <value>127.0.0.1</value>
+        <value>9123</value>
+      </list>
+    </property>
+  </bean>
+  <!-- And connect HumanTaskHandler (implicit TaskClient connection) -->
+  <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" depends-on="setConnection">
+    <property name="targetObject" ref="humanTaskHandler"/>
+    <property name="targetMethod" value="connect"/>
+  </bean>
+ 
+  <!-- Finnaly, register HumanTaskHandler in the session -->
+  <bean factory-bean="ksession" factory-method="getWorkItemManager" id="workItemManager"/>
+  <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <property name="targetObject" ref="workItemManager"/>
+    <property name="targetMethod" value="registerWorkItemHandler"/>
+    <property name="arguments">
+      <list>
+        <value>Human Task</value>
+        <ref bean="humanTaskHandler"/>
+      </list>
+    </property>
+  </bean>
+</beans>
