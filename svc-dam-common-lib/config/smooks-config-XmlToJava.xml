@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><smooks-resource-list xmlns="http://www.milyn.org/xsd/smooks-1.1.xsd" xmlns:jb="http://www.milyn.org/xsd/smooks/javabean-1.2.xsd">
   <params>
     <param name="stream.filter.type">SAX</param>
-    <param name="inputType">input.xml</param>
+    <param name="inputType">xml</param>
   </params>
   <jb:bean beanId="person" class="com.igate.dam.smooks.dto.Person" createOnElement="com.igate.dam.smooks.dto.Person">
     <jb:value data="/com.igate.dam.smooks.dto.Person/firstName" property="firstName"/>

@@ -15,8 +15,8 @@ public class Person implements Serializable  {
 		return "Person [firstName=" + firstName + ", lastName=" + lastName
 				+ "]";
 	}
-	private String firstName="anu";
-	private String lastName="joe";
+	private String firstName="";
+	private String lastName="";
 	public String getFirstName() {
 		return firstName;
 	}

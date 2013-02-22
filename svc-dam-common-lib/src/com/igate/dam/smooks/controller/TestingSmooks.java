@@ -1,4 +1,4 @@
-package com.igate.dam.smooks.controller;
+/*package com.igate.dam.smooks.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -10,16 +10,16 @@ import org.apache.commons.io.FileUtils;
 
 public class TestingSmooks
 {
-	/**
+	*//**
 	 * @param args
 	 * @throws FileNotFoundException
 	 * @throws IOException
-	 */
+	 *//*
 	@SuppressWarnings("rawtypes")
 	public static void main(String[] args) throws FileNotFoundException, IOException {
 		
 		Properties properties=new Properties();
-		properties.load(new FileInputStream(new File("config\\resources\\damUtil.properties")));
+		properties.load(new FileInputStream(new File("resources\\damUtil.properties")));
 		String directoryName=properties.getProperty("inputDirectory");
 		Iterator it = FileUtils.iterateFiles(new File(directoryName), null,false);
         while(it.hasNext()){
@@ -31,4 +31,4 @@ public class TestingSmooks
 	}
 
 }
-}
+}*/

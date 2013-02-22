@@ -42,5 +42,5 @@ public interface FileTransferIntf {
 	 * @return
 	 * @throws IOException 
 	 */
-	public boolean moveAllFiles(String sourcePath, String destinationPath) throws FileTransferException, IOException;
+	public boolean moveAllFiles(String inputFilePath,String outputFilePath) throws FileTransferException, IOException;
 }

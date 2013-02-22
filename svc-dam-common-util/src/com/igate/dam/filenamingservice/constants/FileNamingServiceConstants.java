@@ -8,5 +8,8 @@ public class FileNamingServiceConstants {
 	public static String VENDOR_PROPERTY_FILE_NAME = "vendors";
 	public static String VENDOR_NAMES = "Vendors";
 	public static String BASE_FOLDER_LOCATION = "BaseFolder";
+	public static String MEDIA_FOLDER_NAME="Media";
+	public static String METADATA_FOLDER_NAME="Metadata";
+	public static String MD5_FOLDER_NAME="MD5";
 	
 }

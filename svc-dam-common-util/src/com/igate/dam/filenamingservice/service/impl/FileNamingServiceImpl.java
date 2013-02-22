@@ -2,6 +2,7 @@
  * 
  */
 package com.igate.dam.filenamingservice.service.impl;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -34,11 +35,12 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 		boolean result=false;
 		int position=0;
 		List<String> supportedFileList;
-		try {
-		supportedFileList = getSupportedFileFormats(vendorName);
+		String vendorFolder[]=vendorName.split("/");
+		try 
+		{
+		supportedFileList = getSupportedFileFormats(vendorFolder[0],vendorFolder[1]);
 		position=fileName.lastIndexOf(".");
 		String extension=fileName.substring(position+1);
-		
 		fileNamingServiceLogger.logSupportedFileFormats(vendorName,supportedFileList);
 		for(String format:supportedFileList)
 		{
@@ -48,6 +50,7 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 				break;
 			}
 		}
+
 		fileNamingServiceLogger.logValidationResult(result);
 		}
 		
@@ -64,7 +67,7 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 	 * @return List
 	 * @throws FileNamingServiceException
 	 */
-	private List<String> getSupportedFileFormats(String  vendorName) throws FileNamingServiceException	{
+	private List<String> getSupportedFileFormats(String  vendorName,String folderType) throws FileNamingServiceException	{
 		
 		 List<String> supportedFileFormats=null;
 		 KnowledgeBase knowledgeBase;
@@ -77,7 +80,13 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 			 vendor.setVendorName(vendorName);
 			 session.insert(vendor);
 			 session.fireAllRules();
-			 supportedFileFormats=vendor.getFileFormats();
+			 if(folderType.equalsIgnoreCase((FileNamingServiceConstants.MEDIA_FOLDER_NAME))){
+				 supportedFileFormats=vendor.getMediaFormatList(); 
+			 }
+			 if(folderType.equalsIgnoreCase((FileNamingServiceConstants.METADATA_FOLDER_NAME))){
+				 supportedFileFormats=vendor.getMetadataFormatList();
+			 } 
+			
 		 }
 		 catch(Exception exception){
 			 throw new FileNamingServiceException("unable to create knowledge base");

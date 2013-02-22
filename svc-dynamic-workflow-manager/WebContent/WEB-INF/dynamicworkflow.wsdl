@@ -56,7 +56,7 @@
   </wsdl:binding>
   <wsdl:service name="DynamicWorkFlowService">
     <wsdl:port binding="schema:DynamicWorkFlowBinding" name="DynamicWorkFlowPort">
-      <soap:address location="http://localhost:8081/svc-dynamic-workflow-manager/dynamicworkflow"/>
+      <soap:address location="http://localhost:8080/svc-dynamic-workflow-manager/dynamicworkflow"/>
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

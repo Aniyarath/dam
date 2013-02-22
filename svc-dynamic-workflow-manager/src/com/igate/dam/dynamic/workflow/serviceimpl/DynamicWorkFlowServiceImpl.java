@@ -47,7 +47,18 @@ public class DynamicWorkFlowServiceImpl implements DynamicWorkFlowService {
 		Map<String,Object> processMap = new HashMap<String,Object>();
 		processMap.put("dynamicworkflow", dynamicWorkFlow);
 		
-		procIns = statefulknowsession.startProcess("com.igate.dynamic.workflow.fact",processMap);
+		Map<String,Object> inputMap = new HashMap<String, Object>();
+		inputMap.put("vendorName","D:/DAM-PROJ/AXN");
+		inputMap.put("file","D:\\DAM-PROJ\\AXN\\Media\\input.wav");
+		inputMap.put("md5file", "D:\\DAM-PROJ\\AXN\\md5\\md5.txt");
+		inputMap.put("metadatafile","D:\\DAM-PROJ\\AXN\\Metadata\\output.xml");
+		inputMap.put("humantaskflg","1");
+		inputMap.put("wipFolderPath", "D:\\DAM-PROJ\\WIP\\");
+		inputMap.put("errorFolderPath", "D:\\DAM-PROJ\\Error\\");
+		processMap.put("workflowproperties",inputMap);
+		
+		//procIns = statefulknowsession.startProcess("com.sample.bpmn.testwf",processMap);
+		procIns = statefulknowsession.startProcess(ConstantUtil.DYNAMIC_WORKFLOW_FACT_ID,processMap);
 		}
 		catch(Exception exp){
 			System.out.println(exp.getMessage());

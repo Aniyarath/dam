@@ -12,41 +12,480 @@
              xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
              xmlns:tns="http://www.jboss.org/drools">
 
-  <process processType="Private" isExecutable="true" id="com.igate.ingest.workflow" name="Sample Process" tns:packageName="defaultPackage" >
+  <itemDefinition id="_checkSumResponseItem" structureRef="Boolean" />
+  <itemDefinition id="_filenamingreponseItem" structureRef="Boolean" />
+  <itemDefinition id="_successMoveaAllItem" structureRef="Boolean" />
+  <itemDefinition id="_humantaskflgItem" structureRef="String" />
+  <itemDefinition id="_inputmapItem" structureRef="java.util.HashMap" />
+
+  <process processType="Private" isExecutable="true" id="com.igate.ingest.workflow" name="Hello World" tns:packageName="com.igate" >
+
+    <extensionElements>
+     <tns:import name="com.igate.dam.checksum.service.Impl.ChecksumServiceImpl" />
+     <tns:import name="com.igate.dam.filenamingservice.service.impl.FileNamingServiceImpl" />
+     <tns:import name="com.igate.dam.filenamingservice.service.FileNamingServiceIntf" />
+     <tns:import name="com.igate.dam.filetransfer.api.FileTransferImpl" />
+     <tns:import name="com.igate.dam.filetransfer.api.FileTransferIntf" />
+     <tns:import name="com.igate.dam.smooks.controller.TransformationMain" />
+     <tns:import name="java.util.HashMap" />
+     <tns:import name="org.drools.runtime.StatefulKnowledgeSession" />
+     <tns:import name="java.lang.String" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="checkSumResponse" itemSubjectRef="_checkSumResponseItem"/>
+    <property id="filenamingreponse" itemSubjectRef="_filenamingreponseItem"/>
+    <property id="successMoveaAll" itemSubjectRef="_successMoveaAllItem"/>
+    <property id="humantaskflg" itemSubjectRef="_humantaskflgItem"/>
+    <property id="inputmap" itemSubjectRef="_inputmapItem"/>
 
     <!-- nodes -->
+    <exclusiveGateway id="_34" name="humantaskdiverge" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_35" name="filenamingconverge" gatewayDirection="Converging" />
     <startEvent id="_1" name="StartProcess" />
-    <endEvent id="_2" name="End" >
+    <userTask id="_38" name="File Naming Service Failure Task Handler" >
+      <ioSpecification>
+        <dataInput id="_38_CommentInput" name="Comment" />
+        <dataInput id="_38_TaskNameInput" name="TaskName" />
+        <inputSet>
+          <dataInputRefs>_38_CommentInput</dataInputRefs>
+          <dataInputRefs>_38_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_38_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">File naming service is failed</from>
+          <to xsi:type="tFormalExpression">_38_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_38_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Ingest- File Naming failure</from>
+          <to xsi:type="tFormalExpression">_38_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>abu</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <scriptTask id="_39" name="Logger" scriptFormat="http://www.java.com/java" >
+      <script>	System.out.println("File Naming service failed......,calling human task-------------------&gt;");</script>
+    </scriptTask>
+    <scriptTask id="_36" name="Logger" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("File checksum service failed...calling human task-------------------&gt;"+(String)kcontext.getVariable("humantaskflg"));</script>
+    </scriptTask>
+    <scriptTask id="_37" name="Logger" >
+      <script>		System.out.println("Human task completed-------------------&gt;"+(String)kcontext.getVariable("humantaskflg"));</script>
+    </scriptTask>
+    <scriptTask id="_42" name="FileTransfer" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Entered into File Transfer Service---------&gt;");
+//metadataFilePath=(String)kcontext.getVariable("metadatafile");
+HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+String inputFolderPath=(String)hashMap.get("vendorName");
+String outputFolderPath=(String)hashMap.get("errorFolderPath");
+System.out.println("inputFolderPath---"+inputFolderPath);
+System.out.println("outputFolderPath---"+outputFolderPath);
+
+FileTransferIntf  fileTransferIntf = new FileTransferImpl();
+successMoveaAll = fileTransferIntf.moveAllFiles(inputFolderPath,outputFolderPath);
+kcontext.setVariable("successMoveaAll",successMoveaAll);
+System.out.println("File Transfer Service response---"+successMoveaAll	);</script>
+    </scriptTask>
+    <scriptTask id="_40" name="Logger" scriptFormat="http://www.java.com/java" >
+      <script>	System.out.println("Human task completed-------------------&gt;");</script>
+    </scriptTask>
+    <scriptTask id="_41" name="FileTransfer" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Entered into File Transfer Service---------&gt;");
+//metadataFilePath=(String)kcontext.getVariable("metadatafile");
+HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+String inputFolderPath=(String)hashMap.get("vendorName");
+String outputFolderPath=(String)hashMap.get("errorFolderPath");
+System.out.println("inputFolderPath---"+inputFolderPath);
+System.out.println("outputFolderPath---"+outputFolderPath);
+
+FileTransferIntf  fileTransferIntf = new FileTransferImpl();
+successMoveaAll = fileTransferIntf.moveAllFiles(inputFolderPath,outputFolderPath);
+kcontext.setVariable("successMoveaAll",successMoveaAll);
+System.out.println("File Transfer Service response---"+successMoveaAll	);</script>
+    </scriptTask>
+    <scriptTask id="_13" name="File Checksum" scriptFormat="http://www.java.com/java" >
+      <script>HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+
+/*
+filename=(String)kcontext.getVariable("file");
+md5filename=(String)kcontext.getVariable("md5file");
+System.out.println("Started  Ingestion work flow---------------------&gt; ");
+System.out.println("Entered into Checksum Service");
+System.out.println("file path-----"+filename);
+System.out.println("md5file path-----"+md5filename);
+ChecksumServiceImpl checksumServiceIntf = new ChecksumServiceImpl();
+newmd5Value=checksumServiceIntf.GenerateMD5value(filename);
+md5fileValue=checksumServiceIntf.GetMD5ChecksumValue(md5filename);
+checkSumResponse = checksumServiceIntf.ValidateChecksumValues(newmd5Value,md5fileValue);
+kcontext.setVariable("checkSumResponse",checkSumResponse);
+System.out.println("Checksum Service response---------"+checkSumResponse);
+*/
+
+String filename =(String)hashMap.get("file");
+String md5filename =(String)hashMap.get("md5file");
+System.out.println("Started  Ingestion work flow---------------------&gt; ");
+System.out.println("Entered into Checksum Service");
+System.out.println("file path-----"+filename);
+System.out.println("md5file path-----"+md5filename);
+ChecksumServiceImpl checksumServiceIntf = new ChecksumServiceImpl();
+String newmd5Value=checksumServiceIntf.GenerateMD5value(filename);
+String md5fileValue=checksumServiceIntf.GetMD5ChecksumValue(md5filename);
+checkSumResponse = checksumServiceIntf.ValidateChecksumValues(newmd5Value,md5fileValue);
+//hashMap.put("checkSumResponse",checkSumResponse);
+//kcontext.setVariable("inputmap",hashMap);
+kcontext.setVariable("checkSumResponse",checkSumResponse);
+System.out.println("Checksum Service response---------"+checkSumResponse);		</script>
+    </scriptTask>
+    <endEvent id="_14" name="End" >
         <terminateEventDefinition/>
     </endEvent>
-    <scriptTask id="_3" name="Script" scriptFormat="http://www.java.com/java" >
-      <script>System.out.println("This is Ingest WorkFlow");</script>
+    <exclusiveGateway id="_15" name="Gateway" gatewayDirection="Diverging" />
+    <endEvent id="_17" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_16" name="File Naming" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Entered into File Naming Service---------&gt;");
+HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+/*
+filename=(String)kcontext.getVariable("file");
+md5filename=(String)kcontext.getVariable("md5file");
+vendorname=(String)kcontext.getVariable("vendorName");
+*/
+String filename=(String)hashMap.get("file");
+String md5filename=(String)hashMap.get("md5file");
+String vendorname=(String)hashMap.get("vendorName");
+
+try
+{	
+	FileNamingServiceIntf  fileNamingServiceIntf = new FileNamingServiceImpl();
+	filenamingreponse = fileNamingServiceIntf.validateFile(vendorname,(StatefulKnowledgeSession)kcontext.getKnowledgeRuntime());
+	kcontext.setVariable("filenamingreponse",filenamingreponse);
+	System.out.println("File Naming Service Response----"+filenamingreponse);
+		
+}
+catch(Exception e){
+System.out.println("Unexpected exception occured in File Naming Service");
+filenamingreponse=false;
+kcontext.setVariable("filenamingreponse",filenamingreponse);
+}</script>
     </scriptTask>
+    <scriptTask id="_19" name="File Transfer" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Entered into File Transfer Service---------&gt;");
+//metadataFilePath=(String)kcontext.getVariable("metadatafile");
+HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+String inputFolderPath=(String)hashMap.get("vendorName");
+String outputFolderPath=(String)hashMap.get("wipFolderPath");
+System.out.println("inputFolderPath---"+inputFolderPath);
+System.out.println("outputFolderPath---"+outputFolderPath);
+
+FileTransferIntf  fileTransferIntf = new FileTransferImpl();
+successMoveaAll = fileTransferIntf.moveAllFiles(inputFolderPath,outputFolderPath);
+kcontext.setVariable("successMoveaAll",successMoveaAll);
+System.out.println("File Transfer Service response---"+successMoveaAll	);
+</script>
+    </scriptTask>
+    <endEvent id="_21" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_20" name="Metadata Ingest Service" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Entered into Metadata Transform Service---------&gt;");
+//inputFileName=(String)kcontext.getVariable("metadatafile");
+HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+String inputFileName=(String)hashMap.get("metadatafile");
+System.out.println("Metadatafile path---"+inputFileName);
+
+TransformationMain transformationMain=new TransformationMain();
+transformationMain.loadPropertyFile();</script>
+    </scriptTask>
+    <exclusiveGateway id="_25" name="Gateway" gatewayDirection="Diverging" />
+    <scriptTask id="_27" name="Logger" >
+      <script>System.out.println("File Transfer Service is  failed and moved all files to Error folder");
+</script>
+    </scriptTask>
+    <exclusiveGateway id="_26" name="Gateway" gatewayDirection="Diverging" />
+    <userTask id="_29" name="File Checksum Failure Task Handler" >
+      <ioSpecification>
+        <dataInput id="_29_CommentInput" name="Comment" />
+        <dataInput id="_29_TaskNameInput" name="TaskName" />
+        <dataOutput id="_29_uxflgOutput" name="uxflg" />
+        <inputSet>
+          <dataInputRefs>_29_CommentInput</dataInputRefs>
+          <dataInputRefs>_29_TaskNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_29_uxflgOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_29_CommentInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">File check sum failed</from>
+          <to xsi:type="tFormalExpression">_29_CommentInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_29_TaskNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Ingest-CheckSum Failure</from>
+          <to xsi:type="tFormalExpression">_29_TaskNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_29_uxflgOutput</sourceRef>
+        <targetRef>humantaskflg</targetRef>
+      </dataOutputAssociation>
+      <potentialOwner>
+        <resourceAssignmentExpression>
+          <formalExpression>abu</formalExpression>
+        </resourceAssignmentExpression>
+      </potentialOwner>
+    </userTask>
+    <endEvent id="_28" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <exclusiveGateway id="_31" name="startconverge" gatewayDirection="Converging" />
 
     <!-- connections -->
-    <sequenceFlow id="_3-_2" sourceRef="_3" targetRef="_2" />
-    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_37-_34" sourceRef="_37" targetRef="_34" />
+    <sequenceFlow id="_15-_35" sourceRef="_15" targetRef="_35" name="File Checksum Service success" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >//HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+//boolean checkSumResp = (Boolean)hashMap.get("checkSumResponse");
+return checkSumResponse == true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_34-_35" sourceRef="_34" targetRef="_35" name="File Checksum failure carry forward diverge" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return humantaskflg.equals("1");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_39-_38" sourceRef="_39" targetRef="_38" />
+    <sequenceFlow id="_25-_39" sourceRef="_25" targetRef="_39" name="File Naming service failed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >System.out.println(filenamingreponse);
+
+return filenamingreponse == false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_15-_36" sourceRef="_15" targetRef="_36" name="File Checksum Service Failure" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >//HashMap hashMap = (HashMap)kcontext.getVariable("inputmap");
+//boolean checkSumResp = (Boolean)hashMap.get("checkSumResponse");
+return checkSumResponse == false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_29-_37" sourceRef="_29" targetRef="_37" />
+    <sequenceFlow id="_34-_42" sourceRef="_34" targetRef="_42" name="FileChecksum Terminate call FileTransfer" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return humantaskflg.equals("2");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_38-_40" sourceRef="_38" targetRef="_40" />
+    <sequenceFlow id="_40-_41" sourceRef="_40" targetRef="_41" />
+    <sequenceFlow id="_31-_13" sourceRef="_31" targetRef="_13" />
+    <sequenceFlow id="_42-_14" sourceRef="_42" targetRef="_14" />
+    <sequenceFlow id="_13-_15" sourceRef="_13" targetRef="_15" />
+    <sequenceFlow id="_20-_17" sourceRef="_20" targetRef="_17" />
+    <sequenceFlow id="_35-_16" sourceRef="_35" targetRef="_16" />
+    <sequenceFlow id="_25-_19" sourceRef="_25" targetRef="_19" name="File Naming service success" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >System.out.println(filenamingreponse);
+
+return filenamingreponse == true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_41-_21" sourceRef="_41" targetRef="_21" />
+    <sequenceFlow id="_26-_20" sourceRef="_26" targetRef="_20" name="File Transfer Service success" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >
+System.out.println(successMoveaAll);
+return successMoveaAll==true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_16-_25" sourceRef="_16" targetRef="_25" />
+    <sequenceFlow id="_26-_27" sourceRef="_26" targetRef="_27" name="File Transfer Service failed" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >System.out.println(successMoveaAll);
+return successMoveaAll==false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_19-_26" sourceRef="_19" targetRef="_26" />
+    <sequenceFlow id="_36-_29" sourceRef="_36" targetRef="_29" />
+    <sequenceFlow id="_27-_28" sourceRef="_27" targetRef="_28" />
+    <sequenceFlow id="_1-_31" sourceRef="_1" targetRef="_31" />
+    <sequenceFlow id="_34-_31" sourceRef="_34" targetRef="_31" name="File Checksum Re-ingest" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return humantaskflg.equals("0");</conditionExpression>
+    </sequenceFlow>
 
   </process>
 
   <bpmndi:BPMNDiagram>
     <bpmndi:BPMNPlane bpmnElement="com.igate.ingest.workflow" >
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="263" y="436" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="371" y="21" width="48" height="48" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="_1" >
-        <dc:Bounds x="16" y="16" width="48" height="48" />
+        <dc:Bounds x="-22" y="149" width="48" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_2" >
-        <dc:Bounds x="208" y="16" width="48" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="586" y="217" width="100" height="49" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="_3" >
-        <dc:Bounds x="96" y="16" width="80" height="48" />
+      <bpmndi:BPMNShape bpmnElement="_39" >
+        <dc:Bounds x="599" y="126" width="80" height="48" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="_3-_2" >
-        <di:waypoint x="136" y="40" />
-        <di:waypoint x="232" y="40" />
+      <bpmndi:BPMNShape bpmnElement="_36" >
+        <dc:Bounds x="206" y="138" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_37" >
+        <dc:Bounds x="223" y="309" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_42" >
+        <dc:Bounds x="252" y="508" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_40" >
+        <dc:Bounds x="600" y="302" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_41" >
+        <dc:Bounds x="584" y="422" width="123" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="91" y="41" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="272" y="581" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="234" y="24" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="1214" y="11" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="460" y="14" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="755" y="13" width="95" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="621" y="502" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="1076" y="10" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="609" y="10" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="905" y="108" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="916" y="9" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="205" y="234" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="922" y="191" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="60" y="148" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_37-_34" >
+        <di:waypoint x="263" y="333" />
+        <di:waypoint x="287" y="460" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
-        <di:waypoint x="40" y="40" />
-        <di:waypoint x="136" y="40" />
+      <bpmndi:BPMNEdge bpmnElement="_15-_35" >
+        <di:waypoint x="258" y="48" />
+        <di:waypoint x="395" y="45" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_35" >
+        <di:waypoint x="287" y="460" />
+        <di:waypoint x="395" y="45" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_39-_38" >
+        <di:waypoint x="639" y="150" />
+        <di:waypoint x="636" y="241" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_39" >
+        <di:waypoint x="633" y="34" />
+        <di:waypoint x="639" y="150" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_36" >
+        <di:waypoint x="258" y="48" />
+        <di:waypoint x="246" y="162" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_37" >
+        <di:waypoint x="255" y="258" />
+        <di:waypoint x="263" y="333" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_42" >
+        <di:waypoint x="287" y="460" />
+        <di:waypoint x="292" y="532" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_40" >
+        <di:waypoint x="636" y="241" />
+        <di:waypoint x="640" y="326" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_40-_41" >
+        <di:waypoint x="640" y="326" />
+        <di:waypoint x="645" y="446" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_13" >
+        <di:waypoint x="84" y="172" />
+        <di:waypoint x="131" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_42-_14" >
+        <di:waypoint x="292" y="532" />
+        <di:waypoint x="296" y="605" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_15" >
+        <di:waypoint x="131" y="65" />
+        <di:waypoint x="258" y="48" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_17" >
+        <di:waypoint x="1116" y="34" />
+        <di:waypoint x="1238" y="35" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_16" >
+        <di:waypoint x="395" y="45" />
+        <di:waypoint x="510" y="38" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_19" >
+        <di:waypoint x="633" y="34" />
+        <di:waypoint x="802" y="37" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_41-_21" >
+        <di:waypoint x="645" y="446" />
+        <di:waypoint x="645" y="526" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_20" >
+        <di:waypoint x="940" y="33" />
+        <di:waypoint x="1116" y="34" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_25" >
+        <di:waypoint x="510" y="38" />
+        <di:waypoint x="633" y="34" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_27" >
+        <di:waypoint x="940" y="33" />
+        <di:waypoint x="945" y="132" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_26" >
+        <di:waypoint x="802" y="37" />
+        <di:waypoint x="940" y="33" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_36-_29" >
+        <di:waypoint x="246" y="162" />
+        <di:waypoint x="255" y="258" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_28" >
+        <di:waypoint x="945" y="132" />
+        <di:waypoint x="946" y="215" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_31" >
+        <di:waypoint x="2" y="173" />
+        <di:waypoint x="84" y="172" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_31" >
+        <di:waypoint x="287" y="460" />
+        <di:waypoint x="84" y="172" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

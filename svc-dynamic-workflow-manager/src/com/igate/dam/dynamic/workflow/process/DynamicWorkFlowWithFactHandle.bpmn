@@ -14,6 +14,7 @@
 
   <itemDefinition id="_dynamicworkflowItem" structureRef="com.igate.dam.dynamic.workflow.model.DynamicWorkFlow" />
   <itemDefinition id="_tempdynamicworkflowItem" structureRef="com.igate.dam.dynamic.workflow.model.DynamicWorkFlow" />
+  <itemDefinition id="_workflowpropertiesItem" structureRef="java.util.HashMap" />
 
   <process processType="Private" isExecutable="true" id="com.igate.dynamic.workflow.fact" name="Sample Process" tns:packageName="defaultPackage" >
 
@@ -27,6 +28,7 @@
     <!-- process variables -->
     <property id="dynamicworkflow" itemSubjectRef="_dynamicworkflowItem"/>
     <property id="tempdynamicworkflow" itemSubjectRef="_tempdynamicworkflowItem"/>
+    <property id="workflowproperties" itemSubjectRef="_workflowpropertiesItem"/>
 
     <!-- nodes -->
     <startEvent id="_1" name="StartProcess" />
@@ -87,11 +89,17 @@ System.out.println("Scr 2 Endt-----------------&gt;");
     </scriptTask>
     <callActivity id="_11" name="Invoke Sub Process" calledElement="#{dynamicworkflow.process_id}" >
       <ioSpecification>
+        <dataInput id="_11_inputmapInput" name="inputmap" />
         <inputSet>
+          <dataInputRefs>_11_inputmapInput</dataInputRefs>
         </inputSet>
         <outputSet>
         </outputSet>
       </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>workflowproperties</sourceRef>
+        <targetRef>_11_inputmapInput</targetRef>
+      </dataInputAssociation>
     </callActivity>
 
     <!-- connections -->

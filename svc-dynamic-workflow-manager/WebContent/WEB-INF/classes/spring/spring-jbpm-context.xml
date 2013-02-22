@@ -58,10 +58,10 @@ http://drools.org/schema/drools-spring.xsd">
     <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/QA.bpmn"/>
     <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Publish.bpmn"/>
     <jbpm:resource type="BPMN2" source="classpath:com/igate/dam/dynamic/workflow/process/Archive.bpmn"/>
-    <jbpm:resource type="DRL" source="classpath:com/igate/dam/dynamic/workflow/process/AXN.drl"></jbpm:resource><!--
+    <!--<jbpm:resource type="DRL" source="classpath:com/igate/dam/dynamic/workflow/process/AXN.drl"></jbpm:resource>
     
-    <jbpm:resource type="CHANGE_SET" source="classpath:com/igate/dam/dynamic/workflow/changeset/ChangeSet.xml"/>
     -->
+    <jbpm:resource type="CHANGE_SET" source="classpath:com/igate/dam/dynamic/workflow/changeset/ChangeSet.xml"/>
     
     </jbpm:resources>
   </jbpm:kbase>
@@ -95,10 +95,19 @@ http://drools.org/schema/drools-spring.xsd">
   <bean class="org.jbpm.task.service.AsyncTaskServiceWrapper" id="humanTaskClient">
     <constructor-arg ref="taskClient"/>
   </bean>
+  
+  <!--
   <bean class="org.jbpm.process.workitem.wsht.SyncWSHumanTaskHandler" id="humanTaskHandler">
     <constructor-arg ref="humanTaskClient"/>
     <constructor-arg ref="ksession"/>
   </bean>
+  -->
+ 
+  <bean class="org.jbpm.process.workitem.wsht.CommandBasedWSHumanTaskHandler" id="humanTaskHandler">
+    <constructor-arg ref="ksession"/>
+  </bean>
+ 
+  
   <!-- Configure its connection to the local server -->
   <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" depends-on="humanTaskHandler" id="setConnection">
     <property name="targetObject" ref="humanTaskHandler"/>

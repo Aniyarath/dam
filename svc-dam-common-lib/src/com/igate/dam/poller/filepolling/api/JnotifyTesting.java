@@ -21,7 +21,7 @@ public class JnotifyTesting {
 		 {
 		 int timeInterval=FilePoller.loadPropertyFile();
 		 Properties properties=new Properties();
-		 properties.load(new FileInputStream(new File("config\\resources\\damUtil.properties")));
+		 properties.load(new FileInputStream(new File("resources\\log4j.properties")));
 		 String watchPath=properties.getProperty("watchPath");
 			
 		 jNotifyLogger.loadDirectoryName(watchPath);

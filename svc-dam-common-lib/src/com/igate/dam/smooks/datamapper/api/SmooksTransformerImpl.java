@@ -36,9 +36,11 @@ public class SmooksTransformerImpl implements SmooksTransformerIntf{
 			String xmlContent = null;
 			ExecutionContext executionContext = null;
 			try {
+				
 				 smooks = new Smooks(configFileName);
 				 executionContext = smooks.createExecutionContext();
 				 xmlContent = getFileContent(inputFileName);
+				 
 				 reader = new StringReader(xmlContent);
 				 smooks.filterSource(executionContext, new StreamSource(reader),javaResult);
 			} 
@@ -54,6 +56,11 @@ public class SmooksTransformerImpl implements SmooksTransformerIntf{
 			}
 			catch(SmooksException exception)
 			{
+				smooksloggerutil.smooksException();
+				throw new DamSmooksException("Exception occured with smooks while filtering source");
+			}
+			catch(Exception exception)
+			{exception.printStackTrace();
 				smooksloggerutil.smooksException();
 				throw new DamSmooksException("Exception occured with smooks while filtering source");
 			}

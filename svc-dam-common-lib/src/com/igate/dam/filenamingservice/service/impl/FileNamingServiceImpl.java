@@ -2,9 +2,13 @@
  * 
  */
 package com.igate.dam.filenamingservice.service.impl;
+import java.io.File;
+
+import java.util.Iterator;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.apache.commons.io.FileUtils;
 import org.drools.KnowledgeBase;
 import org.drools.agent.KnowledgeAgent;
 import org.drools.agent.KnowledgeAgentConfiguration;
@@ -25,20 +29,69 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 	
 	FileNamingServiceLogger fileNamingServiceLogger =  new FileNamingServiceLogger();
 	
+	
+	public boolean validateFile(String vendorName,StatefulKnowledgeSession statefulSession) throws FileNamingServiceException
+	{
+		System.out.println(vendorName);
+		boolean result=false;
+		Iterator iterator=null;
+		String fileName=null;
+		
+		String vendorFolder=null;
+		try
+		{
+		vendorFolder=vendorName+"/"+FileNamingServiceConstants.MEDIA_FOLDER_NAME;
+		iterator = FileUtils.iterateFiles(new File(vendorFolder), null,false);
+        while(iterator.hasNext()){
+
+    	   fileName=((File) iterator.next()).getName();
+    	   System.out.println(fileName);
+    	  
+    	   
+        }
+		result=validateFileFormat(vendorFolder, fileName,statefulSession);
+		System.out.println(result);
+		if(result)
+		{
+			vendorFolder=vendorName+"/"+FileNamingServiceConstants.METADATA_FOLDER_NAME;
+			iterator = FileUtils.iterateFiles(new File(vendorFolder), null,false);
+	        while(iterator.hasNext()){
+
+	    	   fileName=((File) iterator.next()).getName();
+	    	  System.out.println(fileName);
+	    	   
+	        }
+	        result=validateFileFormat(vendorFolder, fileName,statefulSession);
+	       
+		 }
+		}
+		catch (Exception exception)
+		 {
+			System.out.println(exception.getMessage());
+				throw new FileNamingServiceException("File or folder doesnot exists..");
+		 }
+		return result;
+		
+		
+	}
+	
 	//function to validate media file formats for a particular vendor
 	/* (non-Javadoc)
 	 * @see com.igate.dam.filenamingservice.main.FileNamingServiceIntf#validateFileFormat(java.lang.String, java.lang.String)
 	 */
-	public boolean validateFileFormat(String vendorName,String fileName) throws FileNamingServiceException
+	
+	public boolean validateFileFormat(String vendorName,String fileName,StatefulKnowledgeSession statefulSession) throws FileNamingServiceException
 	{
 		boolean result=false;
 		int position=0;
 		List<String> supportedFileList;
-		try {
-		supportedFileList = getSupportedFileFormats(vendorName);
+		String vendorFolder[]=vendorName.split("/");
+		try 
+		{
+		supportedFileList = getSupportedFileFormats(vendorFolder[2],vendorFolder[3],statefulSession);
+		System.out.println(supportedFileList);
 		position=fileName.lastIndexOf(".");
 		String extension=fileName.substring(position+1);
-		
 		fileNamingServiceLogger.logSupportedFileFormats(vendorName,supportedFileList);
 		for(String format:supportedFileList)
 		{
@@ -48,6 +101,7 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 				break;
 			}
 		}
+
 		fileNamingServiceLogger.logValidationResult(result);
 		}
 		
@@ -64,20 +118,26 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 	 * @return List
 	 * @throws FileNamingServiceException
 	 */
-	private List<String> getSupportedFileFormats(String  vendorName) throws FileNamingServiceException	{
+	private List<String> getSupportedFileFormats(String  vendorName,String folderType,StatefulKnowledgeSession statefulSession) throws FileNamingServiceException	{
 		
 		 List<String> supportedFileFormats=null;
-		 KnowledgeBase knowledgeBase;
-		 StatefulKnowledgeSession session = null;
+		 //KnowledgeBase knowledgeBase;
+		 //StatefulKnowledgeSession session = null;
 		 Vendor vendor=null;
 		 try {
-			 knowledgeBase = createKnowledgeBase();
-			 session = knowledgeBase.newStatefulKnowledgeSession();
+			 //knowledgeBase = createKnowledgeBase();
+			 //session = knowledgeBase.newStatefulKnowledgeSession();
 			 vendor=new Vendor();
 			 vendor.setVendorName(vendorName);
-			 session.insert(vendor);
-			 session.fireAllRules();
-			 supportedFileFormats=vendor.getFileFormats();
+			 statefulSession.insert(vendor);
+			 statefulSession.fireAllRules();
+			 if(folderType.equalsIgnoreCase((FileNamingServiceConstants.MEDIA_FOLDER_NAME))){
+				 supportedFileFormats=vendor.getMediaFormatList(); 
+			 }
+			 if(folderType.equalsIgnoreCase((FileNamingServiceConstants.METADATA_FOLDER_NAME))){
+				 supportedFileFormats=vendor.getMetadataFormatList();
+			 } 
+			
 		 }
 		 catch(Exception exception){
 			 throw new FileNamingServiceException("unable to create knowledge base");
@@ -90,7 +150,7 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 	/**
 	 * @return
 	 */
-	private static KnowledgeBase createKnowledgeBase()throws FileNamingServiceException	{
+	/*private static KnowledgeBase createKnowledgeBase()throws FileNamingServiceException	{
 		KnowledgeAgent kagent=null;
 		try
 		{
@@ -106,7 +166,7 @@ public class FileNamingServiceImpl implements FileNamingServiceIntf {
 			 throw new FileNamingServiceException("unable to parse changeset");
 		}
 		 return kagent.getKnowledgeBase();
-	}
+	}*/
 
 
 }

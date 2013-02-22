@@ -22,6 +22,7 @@ public class SmooksBO {
 	public JavaResult xmlToJavaTransformation(String inputFileName, String configFileName) throws DamSmooksException{
 		JavaResult javaResult = null;
 		try{
+			
 			SmooksTransformerIntf smooksTransformerIntf = new SmooksTransformerImpl();
 			javaResult = smooksTransformerIntf.xmlToJavaTransformation(inputFileName, configFileName);
 			

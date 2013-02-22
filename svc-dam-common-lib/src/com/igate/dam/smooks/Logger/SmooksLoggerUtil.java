@@ -9,7 +9,7 @@ public class SmooksLoggerUtil {
 	 
 	public SmooksLoggerUtil()
 	{
-		  PropertyConfigurator.configure("config\\resources\\log4j.properties");
+		  PropertyConfigurator.configure("D:\\DAMTOOLS\\svc-dam-common-lib\\resources\\log4j.properties");
 	}
 	public void display(Object message)
 	{

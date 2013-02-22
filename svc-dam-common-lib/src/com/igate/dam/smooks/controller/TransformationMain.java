@@ -1,12 +1,15 @@
 package com.igate.dam.smooks.controller;
 
 import java.io.File;
-import java.io.FileInputStream;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Properties;
 
+import java.util.ResourceBundle;
+
+import org.apache.commons.io.FileUtils;
 import org.milyn.payload.JavaResult;
 
 import com.igate.dam.smooks.Logger.SmooksLoggerUtil;
@@ -18,11 +21,7 @@ public class TransformationMain {
 	
 	SmooksLoggerUtil smooksloggerutil=new SmooksLoggerUtil();
 	
-	/**
-	 * @param inputFileName
-	 * @throws DamSmooksException
-	 */
-	@SuppressWarnings("rawtypes")
+
 	
 	public void fileMapperOperationInput(String inputFileName) throws DamSmooksException
 	{
@@ -39,13 +38,11 @@ public class TransformationMain {
 		{
 			smooksloggerutil.logFileName(inputFileName);
 			mid= inputFileName.lastIndexOf(".");
-			ext=inputFileName.substring(mid+1,inputFileName.length());  
-					
+			ext=inputFileName.substring(mid+1,inputFileName.length());  			
 			SmooksBO smooksBO = new SmooksBO();
-			File inputFile=new File(inputFileName);
-		    fileName=inputFile.getAbsolutePath();
-			
-			if(ext.equalsIgnoreCase("xml")){
+		    fileName=inputFileName;
+		 	if(ext.equalsIgnoreCase("xml")){
+
 				configFileName = "smooks-config-XmlToJava.xml";
 				javaResult  = smooksBO.xmlToJavaTransformation(fileName, configFileName);
 				person = (Person) javaResult.getBean("person");
@@ -53,9 +50,8 @@ public class TransformationMain {
 			}
 			else if(ext.equalsIgnoreCase("java")){
 				configFileName = "smooks-config-JavaToXml.xml";
-				Properties properties=new Properties();
-				properties.load(new FileInputStream(new File("config\\resources\\FilePaths.properties")));
-				outputFilePath =properties.getProperty("outputDirectory");
+				 ResourceBundle resourceBundle=ResourceBundle.getBundle("damUtil");
+				 outputFilePath=resourceBundle.getString("outputDirectory");//Reading from prop file
 			    smooksBO.javaToXMLTransformation(person, configFileName,outputFilePath);
 				smooksloggerutil.display("output xml is stored in :"+outputFilePath);
 			}
@@ -70,18 +66,29 @@ public class TransformationMain {
 			}
 		}
 
-       catch (FileNotFoundException fileNotFoundException) {
-    	  	smooksloggerutil.fileNotFound();
-			throw new DamSmooksException("unable to find the property file");
-		} catch (IOException e) {
-			smooksloggerutil.Ioexception();
-			throw new DamSmooksException("unable to load the property file");
-		}
-		catch (DamSmooksException damSmooksException) {
+       catch (DamSmooksException damSmooksException) {
 			System.out.println(damSmooksException.getMessage());
 			
 		}
 		
 	}
+		
+		public void loadPropertyFile() throws FileNotFoundException, IOException
+		{
+			 ResourceBundle resourceBundle=ResourceBundle.getBundle("damUtil");
+			 String directoryName=resourceBundle.getString("inputDirectory");//Reading from prop file
 
+			Iterator it = FileUtils.iterateFiles(new File(directoryName), null,false);
+	        while(it.hasNext()){
+	                  String fileName=((File) it.next()).getName();
+	                  String inputFileName=directoryName+fileName;
+	                  System.out.println("inputFileName from smooks"+inputFileName);
+	                  fileMapperOperationInput(inputFileName);
+	                  
+		}
+			
+			
+	
+
+		}
 }

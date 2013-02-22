@@ -124,7 +124,7 @@ public class FileTransferImpl implements FileTransferIntf{
 	/* (non-Javadoc)
 	 * @see com.igate.dam.filetransfer.api.FileTransferIntf#moveAllFiles(java.lang.String, java.lang.String)
 	 */
-	public boolean moveAllFiles(String sourcePath, String destinationPath) throws FileTransferException, IOException{
+	public boolean moveAllFiles(String inputFilePath,String outputFilePath) throws FileTransferException, IOException{
 	
 		int filesLength = 0;
 		String sourceFile = null;
@@ -133,17 +133,36 @@ public class FileTransferImpl implements FileTransferIntf{
 		File destination = null;
 		File[] files = null;
 		File file = null;
+		boolean success = true;
 		try{
-			source = new File(sourcePath);
+			
+			/*ResourceBundle resourceBundle=ResourceBundle.getBundle("damUtil");
+			 String destinationPath=resourceBundle.getString("destinationPath");//Reading from prop file
+			 String errorFolderPath=resourceBundle.getString("errorFolderPath");*/
+			
+		
+			
+			/*if(inputFilePath.lastIndexOf(".")!=-1){
+				parent = new File(inputFilePath).getParent();
+				sourcePath = parent.substring(0,parent.lastIndexOf("\\"));
+				success = true;
+			}
+			else{
+				destinationPath = errorFolderPath;
+				sourcePath = inputFilePath;
+			}*/
+			
+			source = new File(inputFilePath);
 			if(!source.exists()){
 				logger.error("Source folder doesn't exist");
-				return false;
+				success = false;
 			}
-			destination = new File(destinationPath);
+			destination = new File(outputFilePath);
 			if(!destination.exists()){
 				logger.error("Destination folder doesn't exist");
-				return false;
+				success = false;
 			}
+			if(success){
 			files = source.listFiles();
 			if(files!=null){
 				filesLength = files.length;
@@ -154,7 +173,8 @@ public class FileTransferImpl implements FileTransferIntf{
 				file = new File(sourceFile);
 				file.renameTo(new File(destinationFile));
 			}
-			return true;
+			}
+			return success;
 		}catch(Exception ex){
 			logger.error("Error in moving all the files"+ex.getMessage());
 			throw new FileTransferException("Error in moving all the files"+ex.getMessage());

@@ -28,24 +28,64 @@ public class VendorMain {
 			String vendors=resourceBundle.getString(FileNamingServiceConstants.VENDOR_NAMES);
 			String baseFolder=resourceBundle.getString(FileNamingServiceConstants.BASE_FOLDER_LOCATION);
 			String[] vendorNames=vendors.split(",");
-			for(int count=0;count<vendorNames.length;count++){
+			
+			String vendorInfo = "";
+			 String fileName="";
+			 String vendorName[]=null;
+			 int count1=0;
+			 for(int count=0;count<vendorNames.length;count=count+2){
+				 System.out.println(vendorNames[count]);
+			 for( count1=count;count1<vendorNames.length;count1++){
 				
-				iterator = FileUtils.iterateFiles(new File(baseFolder+"/"+vendorNames[count]), null,false);
+				iterator = FileUtils.iterateFiles(new File(baseFolder+"/"+vendorNames[count1]), null,false);
 	            while(iterator.hasNext()){
-	            	
-	        	   String fileName=((File) iterator.next()).getName();
-	        	   result=fileNamingServiceIntf.validateFileFormat(vendorNames[count], fileName);
+
+	        	   fileName=((File) iterator.next()).getName();
+	        	  
+	        	   
+	            }
+	            if(fileNamingServiceIntf.validateFileFormat(vendorNames[count1], fileName)){
+	        		   vendorInfo =  vendorNames[count1];
+	        		   vendorName=vendorInfo.split("/");
+	        		   result=true;
+	        		   break;
+	        		   
+	        	   }
+	            else
+	            {
+	            	result=false;
+	            	break;
 	            }
 			}
+			 if(result)
+	         {
+			 String metadatafolder=vendorName[0]+"/"+FileNamingServiceConstants.METADATA_FOLDER_NAME;
+			 
+			 iterator = FileUtils.iterateFiles(new File(baseFolder+"/"+metadatafolder), null,false);
+             while(iterator.hasNext()){
+
+        	    fileName=((File) iterator.next()).getName();
+        	    
+        	   
+             }
+            
+            	
+            	result=fileNamingServiceIntf.validateFileFormat(metadatafolder, fileName);
+	        }
+            else
+            {
+            	result=false;
+            }
+     	    System.out.println("File Validation Result:"+result);
 			
-					
+     	 					
           }
-		
-          catch (FileNamingServiceException exception) {
+		}
+		catch (FileNamingServiceException exception) 
+         {
         	  fileNamingServiceLogger.logFileNamingServiceException(exception.getMessage());
         	
-        	 
-		  }
+         }
 
 	
 	}
